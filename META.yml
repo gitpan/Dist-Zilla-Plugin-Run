@@ -20,7 +20,7 @@ requires:
 resources:
   homepage: http://github.com/Getty/p5-dist-zilla-plugin-run/tree
   repository: git://github.com/Getty/p5-dist-zilla-plugin-run.git
-version: 0.001
+version: 0.002
 x_Dist_Zilla:
   plugins:
     -
