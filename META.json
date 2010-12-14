@@ -1,5 +1,5 @@
 {
-   "abstract" : "execute a command of the distribution on (so far) release",
+   "abstract" : "Overview Module - just documentation",
    "author" : [
       "Torsten Raudssus <torsten@raudssus.de> L<http://www.raudssus.de/>"
    ],
@@ -41,7 +41,7 @@
          "web" : "http://github.com/Getty/p5-dist-zilla-plugin-run/tree"
       }
    },
-   "version" : "0.002",
+   "version" : "0.003",
    "x_Dist_Zilla" : {
       "plugins" : [
          {

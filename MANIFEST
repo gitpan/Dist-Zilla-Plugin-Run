@@ -7,5 +7,9 @@ Makefile.PL
 README
 dist.ini
 lib/Dist/Zilla/Plugin/Run.pm
+lib/Dist/Zilla/Plugin/Run/AfterRelease.pm
+lib/Dist/Zilla/Plugin/Run/BeforeRelease.pm
+lib/Dist/Zilla/Plugin/Run/Release.pm
+lib/Dist/Zilla/Plugin/Run/Role/Runner.pm
 t/00-load.t
 t/release-pod-syntax.t
