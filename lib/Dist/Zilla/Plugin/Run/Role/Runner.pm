@@ -3,9 +3,9 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::Role::Runner::AUTHORITY = 'cpan:GETTY';
 }
 BEGIN {
-  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.003';
+  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.004';
 }
-# ABSTRACT: Role for the modules of Plugin::Run
+# ABSTRACT: Role for the packages of Dist::Zilla::Plugin::Run
 use Moose::Role;
 use namespace::autoclean;
 
@@ -50,11 +50,11 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Plugin::Run::Role::Runner - Role for the modules of Plugin::Run
+Dist::Zilla::Plugin::Run::Role::Runner - Role for the packages of Dist::Zilla::Plugin::Run
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 DESCRIPTION
 

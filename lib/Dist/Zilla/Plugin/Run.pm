@@ -3,9 +3,9 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::AUTHORITY = 'cpan:GETTY';
 }
 BEGIN {
-  $Dist::Zilla::Plugin::Run::VERSION = '0.003';
+  $Dist::Zilla::Plugin::Run::VERSION = '0.004';
 }
-# ABSTRACT: Overview Module - just documentation
+# ABSTRACT: Running external commands on specific hooks of Dist::Zilla
 use strict;
 use warnings;
 
@@ -17,11 +17,11 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Plugin::Run - Overview Module - just documentation
+Dist::Zilla::Plugin::Run - Running external commands on specific hooks of Dist::Zilla
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 
@@ -33,6 +33,10 @@ version 0.003
 
   [Run::AfterRelease]
   run = script/myapp_after.pl %s
+
+=head1 DESCRIPTION
+
+Please be aware that so far just commands are possible which are inside your distribution (its a TODO to fix this).
 
 =head1 AUTHOR
 

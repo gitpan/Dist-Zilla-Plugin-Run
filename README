@@ -1,9 +1,9 @@
 
 
 This archive contains the distribution Dist-Zilla-Plugin-Run,
-version 0.003:
+version 0.004:
 
-  Overview Module - just documentation
+  Running external commands on specific hooks of Dist::Zilla
 
 This software is copyright (c) 2010 by L<Raudssus Social Software|http://www.raudssus.de/>.
 

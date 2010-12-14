@@ -9,7 +9,7 @@ use ExtUtils::MakeMaker 6.31;
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'Overview Module - just documentation',
+  'ABSTRACT' => 'Running external commands on specific hooks of Dist::Zilla',
   'AUTHOR' => 'Torsten Raudssus <torsten@raudssus.de> L<http://www.raudssus.de/>',
   'BUILD_REQUIRES' => {
     'Test::More' => '0.96'
@@ -26,7 +26,7 @@ my %WriteMakefileArgs = (
     'Moose' => '1.15',
     'namespace::autoclean' => '0.11'
   },
-  'VERSION' => '0.003',
+  'VERSION' => '0.004',
   'test' => {
     'TESTS' => 't/*.t'
   }

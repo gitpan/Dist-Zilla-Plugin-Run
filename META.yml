@@ -1,5 +1,5 @@
 ---
-abstract: 'Overview Module - just documentation'
+abstract: 'Running external commands on specific hooks of Dist::Zilla'
 author:
   - 'Torsten Raudssus <torsten@raudssus.de> L<http://www.raudssus.de/>'
 build_requires:
@@ -20,7 +20,7 @@ requires:
 resources:
   homepage: http://github.com/Getty/p5-dist-zilla-plugin-run/tree
   repository: git://github.com/Getty/p5-dist-zilla-plugin-run.git
-version: 0.003
+version: 0.004
 x_Dist_Zilla:
   plugins:
     -

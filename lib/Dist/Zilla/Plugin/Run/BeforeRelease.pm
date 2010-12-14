@@ -3,9 +3,9 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::BeforeRelease::AUTHORITY = 'cpan:GETTY';
 }
 BEGIN {
-  $Dist::Zilla::Plugin::Run::BeforeRelease::VERSION = '0.003';
+  $Dist::Zilla::Plugin::Run::BeforeRelease::VERSION = '0.004';
 }
-# ABSTRACT: execute a command of the distribution on (so far) release
+# ABSTRACT: execute a command of the distribution before release
 use Moose;
 with qw(
 	Dist::Zilla::Role::BeforeRelease
@@ -26,11 +26,11 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Plugin::Run::BeforeRelease - execute a command of the distribution on (so far) release
+Dist::Zilla::Plugin::Run::BeforeRelease - execute a command of the distribution before release
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 
