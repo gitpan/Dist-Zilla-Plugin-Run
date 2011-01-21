@@ -3,7 +3,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::AfterRelease::AUTHORITY = 'cpan:GETTY';
 }
 BEGIN {
-  $Dist::Zilla::Plugin::Run::AfterRelease::VERSION = '0.004';
+  $Dist::Zilla::Plugin::Run::AfterRelease::VERSION = '0.005';
 }
 # ABSTRACT: execute a command of the distribution after release
 use Moose;
@@ -15,7 +15,9 @@ with qw(
 use namespace::autoclean;
 
 sub after_release {
-	shift->call_script(@_);
+    my $self = shift;
+    
+	$self->call_script(@_, $self->zilla->version);
 }
 
 
@@ -30,21 +32,22 @@ Dist::Zilla::Plugin::Run::AfterRelease - execute a command of the distribution a
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 SYNOPSIS
 
   [Run::AfterRelease]
-  run = script/myapp_after.pl %s
+  run = script/myapp_after.pl --archive %s --version %s
 
 or
 
   [Run::AfterRelease / MyAppAfter]
-  run = script/myapp_after.pl %s
+  run = script/myapp_after.pl %s %s
 
 =head1 DESCRIPTION
 
-This plugin executes after release a command, if its given on config. The %s get replaced by the archive of the release.
+This plugin executes after release a command, if its given on config. The 1st %s get replaced by the archive of the release.
+The 2nd - by the version of the distribution.
 
 =head2 notexist_fatal
 

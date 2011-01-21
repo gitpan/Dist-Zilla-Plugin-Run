@@ -3,7 +3,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::AUTHORITY = 'cpan:GETTY';
 }
 BEGIN {
-  $Dist::Zilla::Plugin::Run::VERSION = '0.004';
+  $Dist::Zilla::Plugin::Run::VERSION = '0.005';
 }
 # ABSTRACT: Running external commands on specific hooks of Dist::Zilla
 use strict;
@@ -21,15 +21,17 @@ Dist::Zilla::Plugin::Run - Running external commands on specific hooks of Dist::
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 SYNOPSIS
 
   [Run::BeforeRelease]
-  run = script/myapp_before.pl %s
+  run = script/myapp_before1.pl %s
+  run = script/myapp_before2.pl %s
 
   [Run::Release]
-  run = script/myapp_deploy.pl %s
+  run = script/myapp_deploy1.pl %s
+  run = script/myapp_deploy2.pl %s
 
   [Run::AfterRelease]
   run = script/myapp_after.pl %s

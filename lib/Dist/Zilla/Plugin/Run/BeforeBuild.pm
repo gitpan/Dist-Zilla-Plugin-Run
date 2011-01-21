@@ -1,21 +1,23 @@
-package Dist::Zilla::Plugin::Run::Release;
+package Dist::Zilla::Plugin::Run::BeforeBuild;
 BEGIN {
-  $Dist::Zilla::Plugin::Run::Release::AUTHORITY = 'cpan:GETTY';
+  $Dist::Zilla::Plugin::Run::BeforeBuild::AUTHORITY = 'cpan:GETTY';
 }
 BEGIN {
-  $Dist::Zilla::Plugin::Run::Release::VERSION = '0.005';
+  $Dist::Zilla::Plugin::Run::BeforeBuild::VERSION = '0.005';
 }
-# ABSTRACT: execute a command of the distribution on release
+# ABSTRACT: execute a command of the distribution after build
 use Moose;
 with qw(
-	Dist::Zilla::Role::Releaser
+	Dist::Zilla::Role::BeforeBuild
 	Dist::Zilla::Plugin::Run::Role::Runner
 );
 
 use namespace::autoclean;
 
-sub release {
-	shift->call_script(@_);
+sub before_build {
+    my ($self) = @_;
+    
+	$self->call_script($self->zilla->version);
 }
 
 
@@ -26,7 +28,7 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Plugin::Run::Release - execute a command of the distribution on release
+Dist::Zilla::Plugin::Run::BeforeBuild - execute a command of the distribution after build
 
 =head1 VERSION
 
@@ -34,17 +36,13 @@ version 0.005
 
 =head1 SYNOPSIS
 
-  [Run::Release]
-  run = script/myapp_deploy.pl %s
-
-or
-
-  [Run::Release / MyAppDeploy]
-  run = script/myapp_deploy.pl %s
+  [Run::BeforeBuild]
+  run = script/do_this.pl --version %s
+  run = script/do_that.pl
 
 =head1 DESCRIPTION
 
-This plugin executes on release a command, if its given on config. The %s get replaced by the archive of the release.
+This plugin executes before build a command, if its given on config. The %s get replaced by the version of the distribution.
 
 =head2 notexist_fatal
 

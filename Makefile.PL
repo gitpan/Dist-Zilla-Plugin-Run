@@ -24,9 +24,10 @@ my %WriteMakefileArgs = (
   'PREREQ_PM' => {
     'Dist::Zilla' => '4.102346',
     'Moose' => '1.15',
+    'Path::Class' => '0.16',
     'namespace::autoclean' => '0.11'
   },
-  'VERSION' => '0.004',
+  'VERSION' => '0.005',
   'test' => {
     'TESTS' => 't/*.t'
   }
