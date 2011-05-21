@@ -1,5 +1,8 @@
 Revision history for Dist-Zilla-Plugin-Run
 
+0.006     2011-05-21 02:58:17 Europe/Berlin
+	- Fixed wrong bangpath
+
 0.005     2011-04-29 22:54:18 Europe/Berlin
 
 0.005     2011-01-21 13:21:08 Europe/Moscow
