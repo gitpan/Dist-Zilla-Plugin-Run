@@ -2,8 +2,8 @@ package Dist::Zilla::Plugin::Run::BeforeRelease;
 BEGIN {
   $Dist::Zilla::Plugin::Run::BeforeRelease::AUTHORITY = 'cpan:GETTY';
 }
-BEGIN {
-  $Dist::Zilla::Plugin::Run::BeforeRelease::VERSION = '0.006';
+{
+  $Dist::Zilla::Plugin::Run::BeforeRelease::VERSION = '0.007';
 }
 # ABSTRACT: execute a command of the distribution before release
 use Moose;
@@ -15,7 +15,11 @@ with qw(
 use namespace::autoclean;
 
 sub before_release {
-	shift->call_script(@_);
+  my ( $self, $archive ) = @_;
+  $self->call_script({
+    archive =>  $archive,
+    pos     => [$archive]
+  });
 }
 
 
@@ -30,7 +34,7 @@ Dist::Zilla::Plugin::Run::BeforeRelease - execute a command of the distribution 
 
 =head1 VERSION
 
-version 0.006
+version 0.007
 
 =head1 SYNOPSIS
 
@@ -44,11 +48,22 @@ or
 
 =head1 DESCRIPTION
 
-This plugin executes before release a command, if its given on config. The %s get replaced by the archive of the release.
+This plugin executes the specified command before releasing.
 
-=head2 notexist_fatal
+=head1 POSITIONAL PARAMETERS
 
-If this value is set to false, the plugin will ignore a not existing script. Default is true.
+See L<Dist::Zilla::Plugin::Run/CONVERSIONS>
+for the list of common formatting variables available to all plugins.
+
+For backward compatibility:
+
+=over 4
+
+=item *
+
+The 1st C<%s> will be replaced by the archive of the release.
+
+=back
 
 =head1 AUTHOR
 

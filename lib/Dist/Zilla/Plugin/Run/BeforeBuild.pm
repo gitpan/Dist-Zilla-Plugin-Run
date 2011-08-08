@@ -2,10 +2,10 @@ package Dist::Zilla::Plugin::Run::BeforeBuild;
 BEGIN {
   $Dist::Zilla::Plugin::Run::BeforeBuild::AUTHORITY = 'cpan:GETTY';
 }
-BEGIN {
-  $Dist::Zilla::Plugin::Run::BeforeBuild::VERSION = '0.006';
+{
+  $Dist::Zilla::Plugin::Run::BeforeBuild::VERSION = '0.007';
 }
-# ABSTRACT: execute a command of the distribution after build
+# ABSTRACT: execute a command of the distribution before build
 use Moose;
 with qw(
 	Dist::Zilla::Role::BeforeBuild
@@ -16,8 +16,9 @@ use namespace::autoclean;
 
 sub before_build {
     my ($self) = @_;
-    
-	$self->call_script($self->zilla->version);
+  $self->call_script({
+    pos => [$self->zilla->version]
+  });
 }
 
 
@@ -28,11 +29,11 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Plugin::Run::BeforeBuild - execute a command of the distribution after build
+Dist::Zilla::Plugin::Run::BeforeBuild - execute a command of the distribution before build
 
 =head1 VERSION
 
-version 0.006
+version 0.007
 
 =head1 SYNOPSIS
 
@@ -42,11 +43,22 @@ version 0.006
 
 =head1 DESCRIPTION
 
-This plugin executes before build a command, if its given on config. The %s get replaced by the version of the distribution.
+This plugin executes the specified command before building the dist.
 
-=head2 notexist_fatal
+=head1 POSITIONAL PARAMETERS
 
-If this value is set to false, the plugin will ignore a not existing script. Default is true.
+See L<Dist::Zilla::Plugin::Run/CONVERSIONS>
+for the list of common formatting variables available to all plugins.
+
+For backward compatibility:
+
+=over 4
+
+=item *
+
+The 1st C<%s> will be replaced by the dist version.
+
+=back
 
 =head1 AUTHOR
 

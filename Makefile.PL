@@ -25,9 +25,10 @@ my %WriteMakefileArgs = (
     'Dist::Zilla' => '4.102346',
     'Moose' => '1.15',
     'Path::Class' => '0.16',
+    'String::Formatter' => '0.102082',
     'namespace::autoclean' => '0.11'
   },
-  'VERSION' => '0.006',
+  'VERSION' => '0.007',
   'test' => {
     'TESTS' => 't/*.t'
   }
