@@ -3,7 +3,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::AfterRelease::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::AfterRelease::VERSION = '0.007';
+  $Dist::Zilla::Plugin::Run::AfterRelease::VERSION = '0.008';
 }
 # ABSTRACT: execute a command of the distribution after release
 use Moose;
@@ -34,7 +34,7 @@ Dist::Zilla::Plugin::Run::AfterRelease - execute a command of the distribution a
 
 =head1 VERSION
 
-version 0.007
+version 0.008
 
 =head1 SYNOPSIS
 

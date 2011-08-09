@@ -23,12 +23,13 @@ my %WriteMakefileArgs = (
   'NAME' => 'Dist::Zilla::Plugin::Run',
   'PREREQ_PM' => {
     'Dist::Zilla' => '4.102346',
+    'IPC::Open3' => '0',
     'Moose' => '1.15',
     'Path::Class' => '0.16',
     'String::Formatter' => '0.102082',
     'namespace::autoclean' => '0.11'
   },
-  'VERSION' => '0.007',
+  'VERSION' => '0.008',
   'test' => {
     'TESTS' => 't/*.t'
   }

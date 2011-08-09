@@ -15,6 +15,7 @@ meta-spec:
 name: Dist-Zilla-Plugin-Run
 requires:
   Dist::Zilla: 4.102346
+  IPC::Open3: 0
   Moose: 1.15
   Path::Class: 0.16
   String::Formatter: 0.102082
@@ -22,7 +23,7 @@ requires:
 resources:
   homepage: https://github.com/Getty/p5-dist-zilla-plugin-run
   repository: https://github.com/Getty/p5-dist-zilla-plugin-run
-version: 0.007
+version: 0.008
 x_Dist_Zilla:
   plugins:
     -
@@ -157,6 +158,14 @@ x_Dist_Zilla:
           type: requires
       name: Prereqs
       version: 4.200014
+    -
+      class: Dist::Zilla::Plugin::Run::AfterBuild
+      name: Run::AfterBuild
+      version: ~
+    -
+      class: Dist::Zilla::Plugin::Run::AfterRelease
+      name: Run::AfterRelease
+      version: ~
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':InstallModules'

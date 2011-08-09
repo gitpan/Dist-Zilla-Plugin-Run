@@ -1,5 +1,12 @@
 Revision history for Dist-Zilla-Plugin-Run
 
+0.008     2011-08-09 09:31:33 America/Phoenix
+  - Stream command output incrementally instead of waiting
+    until the command is done. (RWSTAUNER)
+    Closes gh-4.  Thanks to SamuraiJack for the suggestion.
+
+  - Show correct exit status on command failure.
+
 0.007     2011-08-07 20:30:39 America/Phoenix
   - Define other (constant) string format conversions (%n, %v);
     Retain positional %s for backward compatibility. (RWSTAUNER)
