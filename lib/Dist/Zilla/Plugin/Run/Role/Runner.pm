@@ -3,12 +3,13 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::Role::Runner::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.009';
+  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.010';
 }
 # ABSTRACT: Role for the packages of Dist::Zilla::Plugin::Run
 use Moose::Role;
 use String::Formatter 0.102082 ();
 use namespace::autoclean;
+use File::Spec (); # core
 use IPC::Open3 (); # core
 
 has run => (
@@ -40,7 +41,7 @@ sub call_script {
             $self->log("Executing: $command");
 
             # autoflush STDOUT so we can see command output right away
-            $| = 1;
+            local $| = 1;
             # combine stdout and stderr for ease of proxying through the logger
             my $pid = IPC::Open3::open3(my ($in, $out), undef, $command);
             while(defined(my $line = <$out>)){
@@ -49,9 +50,9 @@ sub call_script {
             }
             # zombie repellent
             waitpid($pid, 0);
-            my $status = $? >> 8;
+            my $status = ($? >> 8);
 
-            $self->log_fatal("Command exited with status $status") if $status;
+            $self->log_fatal("Command exited with status $status ($?)") if $status;
             $self->log("Command executed successfully");
         }
     } 
@@ -67,6 +68,8 @@ around mvp_multivalue_args => sub {
     @res; 
 };
 
+my $path_separator = (File::Spec->catfile(qw(a b)) =~ m/^a(.+?)b$/)[0];
+
 sub build_formatter {
     my ( $self, $params ) = @_;
 
@@ -80,6 +83,7 @@ sub build_formatter {
             a => $params->{archive} || '',
             d => $dir,
             n => $self->zilla->name,
+            p => $path_separator,
             v => $self->zilla->version,
             # positional replace (backward compatible)
             s => sub { shift(@{ $params->{pos} }) || '' },
@@ -100,7 +104,7 @@ Dist::Zilla::Plugin::Run::Role::Runner - Role for the packages of Dist::Zilla::P
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 DESCRIPTION
 

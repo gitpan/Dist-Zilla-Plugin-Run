@@ -3,7 +3,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::VERSION = '0.009';
+  $Dist::Zilla::Plugin::Run::VERSION = '0.010';
 }
 # ABSTRACT: Running external commands on specific hooks of Dist::Zilla
 use strict;
@@ -21,7 +21,7 @@ Dist::Zilla::Plugin::Run - Running external commands on specific hooks of Dist::
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 SYNOPSIS
 
@@ -35,6 +35,8 @@ version 0.009
 
   [Run::AfterRelease]
   run = script/myapp_after.pl %s %v
+  ; %p can be used as the path separator if you have contributors on a different OS
+  run = script%pmyapp_after.pl %s %v
 
 =head1 DESCRIPTION
 
@@ -59,6 +61,10 @@ C<%d> the directory in which the dist was built (not in C<BeforeBuild>)
 =item *
 
 C<%n> the dist name
+
+=item *
+
+C<%p> path separator ('/' on Unix, '\\' on Win32... useful for cross-platform dist.ini files)
 
 =item *
 

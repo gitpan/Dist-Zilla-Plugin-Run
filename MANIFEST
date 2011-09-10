@@ -18,7 +18,7 @@ t/00-load.t
 t/10_build_phase.t
 t/20_formatter.t
 t/30_all_phases.t
-t/40_test_phase.fix_me
+t/40_test_phase.t
 t/lib/Dist/Zilla/Stash/Heap.pm
 t/lib/Test/DZil.pm
 t/release-pod-syntax.t

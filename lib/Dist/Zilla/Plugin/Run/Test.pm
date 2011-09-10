@@ -3,7 +3,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::Test::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::Test::VERSION = '0.009';
+  $Dist::Zilla::Plugin::Run::Test::VERSION = '0.010';
 }
 # ABSTRACT: execute a command of the distribution after build
 use Moose;
@@ -34,7 +34,7 @@ Dist::Zilla::Plugin::Run::Test - execute a command of the distribution after bui
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 SYNOPSIS
 
@@ -55,6 +55,8 @@ newly built distribution. This is the way Dist::Zilla works.
 
 See L<Dist::Zilla::Plugin::Run/CONVERSIONS>
 for the list of common formatting variables available to all plugins.
+
+There are no positional parameters for this plugin.
 
 =head1 AUTHOR
 
