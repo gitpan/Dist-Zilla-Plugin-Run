@@ -3,7 +3,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::Role::Runner::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.010';
+  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.011';
 }
 # ABSTRACT: Role for the packages of Dist::Zilla::Plugin::Run
 use Moose::Role;
@@ -80,7 +80,8 @@ sub build_formatter {
     return String::Formatter->new({
         codes => {
             # not always available
-            a => $params->{archive} || '',
+            # explicitly pass a string (not an object) [rt-72008]
+            a => defined $params->{archive} ? "$params->{archive}" : '',
             d => $dir,
             n => $self->zilla->name,
             p => $path_separator,
@@ -104,7 +105,7 @@ Dist::Zilla::Plugin::Run::Role::Runner - Role for the packages of Dist::Zilla::P
 
 =head1 VERSION
 
-version 0.010
+version 0.011
 
 =head1 DESCRIPTION
 
