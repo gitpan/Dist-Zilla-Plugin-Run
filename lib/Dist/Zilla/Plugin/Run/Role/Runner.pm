@@ -1,9 +1,12 @@
+use strict;
+use warnings;
+
 package Dist::Zilla::Plugin::Run::Role::Runner;
 BEGIN {
   $Dist::Zilla::Plugin::Run::Role::Runner::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.011';
+  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.012';
 }
 # ABSTRACT: Role for the packages of Dist::Zilla::Plugin::Run
 use Moose::Role;
@@ -11,6 +14,13 @@ use String::Formatter 0.102082 ();
 use namespace::autoclean;
 use File::Spec (); # core
 use IPC::Open3 (); # core
+use Config     (); # core
+
+has perlpath => (
+    is      => 'ro',
+    isa     => 'Str',
+    builder => 'current_perl_path',
+);
 
 has run => (
     is => 'ro',
@@ -88,8 +98,19 @@ sub build_formatter {
             v => $self->zilla->version,
             # positional replace (backward compatible)
             s => sub { shift(@{ $params->{pos} }) || '' },
+            x => $self->perlpath,
         },
     });
+}
+
+sub current_perl_path {
+    # see perlvar $^X
+    my $perl = $Config::Config{perlpath};
+    if ($^O ne 'VMS') {
+        $perl .= $Config::Config{_exe}
+            unless $perl =~ m/$Config::Config{_exe}$/i;
+    }
+    return $perl;
 }
 
 
@@ -105,7 +126,7 @@ Dist::Zilla::Plugin::Run::Role::Runner - Role for the packages of Dist::Zilla::P
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 DESCRIPTION
 

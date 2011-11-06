@@ -9,7 +9,7 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "Running external commands on specific hooks of Dist::Zilla",
+  "ABSTRACT" => "Run external commands at specific phases of Dist::Zilla",
   "AUTHOR" => "Torsten Raudssus <torsten\@raudssus.de> L<http://www.raudssus.de/>",
   "BUILD_REQUIRES" => {
     "Test::More" => "0.96"
@@ -22,6 +22,7 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Dist::Zilla::Plugin::Run",
   "PREREQ_PM" => {
+    "Config" => 0,
     "Dist::Zilla" => "4.102346",
     "File::Spec" => 0,
     "IPC::Open3" => 0,
@@ -30,7 +31,7 @@ my %WriteMakefileArgs = (
     "String::Formatter" => "0.102082",
     "namespace::autoclean" => "0.11"
   },
-  "VERSION" => "0.011",
+  "VERSION" => "0.012",
   "test" => {
     "TESTS" => "t/*.t"
   }

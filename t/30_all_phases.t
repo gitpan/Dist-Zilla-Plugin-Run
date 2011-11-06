@@ -5,8 +5,7 @@ use Test::More 0.88;
 use lib 't/lib';
 
 use Path::Class;
-
-use Test::DZil;
+use Dist::Zilla::Tester;
 
 {
     my $tzil = Dist::Zilla::Tester->from_config(
@@ -22,15 +21,16 @@ use Test::DZil;
         n => 'TestDzilPhases',
         d => $dir,
         v => '1.01',
+        x => Dist::Zilla::Plugin::Run::Role::Runner->current_perl_path,
     );
 
     # test constant conversions as well as positional %s for backward compatibility
     my @exp = split /\n/, <<OUTPUT;
-before_build $f{v} $f{n} $f{v} ...
-after_build $f{n} $f{v} $f{d} $f{d} $f{v} $f{v} ..
-before_release $f{n} -d $f{d} $f{a} -v $f{v} .$f{a}.
-release $f{a} $f{n} $f{v} $f{d}/a $f{d}/b $f{a}
-after_release $f{d} $f{v} $f{a} $f{v} $f{n} $f{a}
+before_build $f{v} $f{n} $f{v} ... $f{x}
+after_build $f{n} $f{v} $f{d} $f{d} $f{v} $f{v} .. $f{x}
+before_release $f{n} -d $f{d} $f{a} -v $f{v} .$f{a}. $f{x}
+release $f{a} $f{n} $f{v} $f{d}/a $f{d}/b $f{a} $f{x}
+after_release $f{d} $f{v} $f{a} $f{v} $f{n} $f{a} $f{x}
 OUTPUT
 
     # provide better test titles

@@ -1,9 +1,12 @@
+use strict;
+use warnings;
+
 package Dist::Zilla::Plugin::Run::AfterBuild;
 BEGIN {
   $Dist::Zilla::Plugin::Run::AfterBuild::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::AfterBuild::VERSION = '0.011';
+  $Dist::Zilla::Plugin::Run::AfterBuild::VERSION = '0.012';
 }
 # ABSTRACT: execute a command of the distribution after build
 use Moose;
@@ -34,7 +37,7 @@ Dist::Zilla::Plugin::Run::AfterBuild - execute a command of the distribution aft
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 SYNOPSIS
 

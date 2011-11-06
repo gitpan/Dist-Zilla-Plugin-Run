@@ -1,13 +1,14 @@
+use strict;
+use warnings;
+
 package Dist::Zilla::Plugin::Run;
 BEGIN {
   $Dist::Zilla::Plugin::Run::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::VERSION = '0.011';
+  $Dist::Zilla::Plugin::Run::VERSION = '0.012';
 }
-# ABSTRACT: Running external commands on specific hooks of Dist::Zilla
-use strict;
-use warnings;
+# ABSTRACT: Run external commands at specific phases of Dist::Zilla
 
 
 1;
@@ -17,11 +18,11 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Plugin::Run - Running external commands on specific hooks of Dist::Zilla
+Dist::Zilla::Plugin::Run - Run external commands at specific phases of Dist::Zilla
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 SYNOPSIS
 
@@ -69,6 +70,10 @@ C<%p> path separator ('/' on Unix, '\\' on Win32... useful for cross-platform di
 =item *
 
 C<%v> the dist version
+
+=item *
+
+C<%x> full path to the current perl interpreter (like $^X but from L<Config>)
 
 =back
 
