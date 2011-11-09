@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::Role::Runner::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.012';
+  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.013';
 }
 # ABSTRACT: Role for the packages of Dist::Zilla::Plugin::Run
 use Moose::Role;
@@ -126,11 +126,11 @@ Dist::Zilla::Plugin::Run::Role::Runner - Role for the packages of Dist::Zilla::P
 
 =head1 VERSION
 
-version 0.012
+version 0.013
 
 =head1 DESCRIPTION
 
-This is the base role for all the plugins L<Dist::Zilla::Plugin::Run> delivers. You dont need this.
+This is the base role for all the plugins L<Dist::Zilla::Plugin::Run> delivers. You don't need this.
 
 =head1 AUTHOR
 

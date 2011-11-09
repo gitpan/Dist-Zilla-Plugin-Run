@@ -31,7 +31,7 @@ my %WriteMakefileArgs = (
     "String::Formatter" => "0.102082",
     "namespace::autoclean" => "0.11"
   },
-  "VERSION" => "0.012",
+  "VERSION" => "0.013",
   "test" => {
     "TESTS" => "t/*.t"
   }
