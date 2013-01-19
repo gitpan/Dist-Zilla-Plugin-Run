@@ -8,6 +8,7 @@ README
 dist.ini
 lib/Dist/Zilla/Plugin/Run.pm
 lib/Dist/Zilla/Plugin/Run/AfterBuild.pm
+lib/Dist/Zilla/Plugin/Run/AfterMint.pm
 lib/Dist/Zilla/Plugin/Run/AfterRelease.pm
 lib/Dist/Zilla/Plugin/Run/BeforeBuild.pm
 lib/Dist/Zilla/Plugin/Run/BeforeRelease.pm
@@ -19,6 +20,7 @@ t/10_build_phase.t
 t/20_formatter.t
 t/30_all_phases.t
 t/40_test_phase.t
+t/50_mint.t
 t/release-pod-syntax.t
 test_data/all_phases/dist.ini
 test_data/all_phases/lib/Digest/MD5.js
@@ -27,6 +29,8 @@ test_data/build_phase/dist.ini
 test_data/build_phase/lib/Digest/MD5.js
 test_data/build_phase/script/after_build.pl
 test_data/build_phase/script/before_build.pl
+test_data/global/config.ini
+test_data/profiles/default/profile.ini
 test_data/test_phase/dist.ini
 test_data/test_phase/lib/Digest/MD5.js
 test_data/test_phase/script/test.pl

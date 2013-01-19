@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::VERSION = '0.013';
+  $Dist::Zilla::Plugin::Run::VERSION = '0.014';
 }
 # ABSTRACT: Run external commands at specific phases of Dist::Zilla
 
@@ -14,6 +14,7 @@ BEGIN {
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -22,7 +23,7 @@ Dist::Zilla::Plugin::Run - Run external commands at specific phases of Dist::Zil
 
 =head1 VERSION
 
-version 0.013
+version 0.014
 
 =head1 SYNOPSIS
 
@@ -57,7 +58,7 @@ C<%a> the archive of the release (available to all C<*Release> phases)
 
 =item *
 
-C<%d> the directory in which the dist was built (not in C<BeforeBuild>)
+C<%d> the directory in which the dist was built (or minted) (not in C<BeforeBuild>)
 
 =item *
 
@@ -94,4 +95,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
