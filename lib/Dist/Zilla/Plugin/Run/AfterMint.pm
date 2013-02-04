@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::AfterMint::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::AfterMint::VERSION = '0.014';
+  $Dist::Zilla::Plugin::Run::AfterMint::VERSION = '0.015';
 }
 # ABSTRACT: Execute a command after a new dist is minted
 use Moose;
@@ -29,7 +29,6 @@ sub after_mint {
 1;
 
 __END__
-
 =pod
 
 =head1 NAME
@@ -38,7 +37,7 @@ Dist::Zilla::Plugin::Run::AfterMint - Execute a command after a new dist is mint
 
 =head1 VERSION
 
-version 0.014
+version 0.015
 
 =head1 SYNOPSIS
 
@@ -66,3 +65,4 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
+

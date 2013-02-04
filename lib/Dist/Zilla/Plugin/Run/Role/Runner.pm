@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::Role::Runner::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.014';
+  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.015';
 }
 # ABSTRACT: Role for the packages of Dist::Zilla::Plugin::Run
 use Moose::Role;
@@ -135,7 +135,6 @@ sub current_perl_path {
 # vim: set ts=4 sts=4 sw=4 expandtab smarttab:
 
 __END__
-
 =pod
 
 =head1 NAME
@@ -144,7 +143,7 @@ Dist::Zilla::Plugin::Run::Role::Runner - Role for the packages of Dist::Zilla::P
 
 =head1 VERSION
 
-version 0.014
+version 0.015
 
 =head1 DESCRIPTION
 
@@ -162,3 +161,4 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
+
