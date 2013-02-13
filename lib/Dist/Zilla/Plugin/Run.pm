@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::VERSION = '0.015';
+  $Dist::Zilla::Plugin::Run::VERSION = '0.016';
 }
 # ABSTRACT: Run external commands at specific phases of Dist::Zilla
 
@@ -14,6 +14,7 @@ BEGIN {
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -22,7 +23,7 @@ Dist::Zilla::Plugin::Run - Run external commands at specific phases of Dist::Zil
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 SYNOPSIS
 
@@ -37,10 +38,12 @@ version 0.015
   [Run::BeforeRelease]
   run = script/myapp_before1.pl %s
   run = script/myapp_before2.pl %n %v
+  run_no_trial = script/no_execution_on_trial.pl %n %v
 
   [Run::Release]
   run = script/myapp_deploy1.pl %s
   run = deployer.pl --dir %d --tgz %a --name %n --version %v
+  run_no_trial = script/no_execution_on_trial.pl --dir %d --tgz %a --name %n --version %v
 
   [Run::AfterRelease]
   run = script/myapp_after.pl --archive %s --version %s
@@ -59,6 +62,9 @@ version 0.015
 =head1 DESCRIPTION
 
 Run arbitrary commands at various L<Dist::Zilla> phases.
+
+Use 'run_no_trial' instead of 'run' to only run a given command
+if this isn't a I<trial> build/release.
 
 =head1 CONVERSIONS
 
@@ -111,4 +117,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

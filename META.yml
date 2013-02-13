@@ -27,7 +27,7 @@ requires:
 resources:
   homepage: https://github.com/Getty/p5-dist-zilla-plugin-run
   repository: https://github.com/Getty/p5-dist-zilla-plugin-run.git
-version: 0.015
+version: 0.016
 x_Dist_Zilla:
   perl:
     version: 5.014002
@@ -91,7 +91,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Git::NextVersion
       name: '@GETTY/Git::NextVersion'
-      version: 2.005
+      version: 2.009
     -
       class: Dist::Zilla::Plugin::PkgVersion
       name: '@GETTY/PkgVersion'
@@ -143,19 +143,19 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Git::Check
       name: '@GETTY/@Git/Check'
-      version: 2.005
+      version: 2.009
     -
       class: Dist::Zilla::Plugin::Git::Commit
       name: '@GETTY/@Git/Commit'
-      version: 2.005
+      version: 2.009
     -
       class: Dist::Zilla::Plugin::Git::Tag
       name: '@GETTY/@Git/Tag'
-      version: 2.005
+      version: 2.009
     -
       class: Dist::Zilla::Plugin::Git::Push
       name: '@GETTY/@Git/Push'
-      version: 2.005
+      version: 2.009
     -
       class: Dist::Zilla::Plugin::Prereqs
       config:

@@ -29,6 +29,7 @@ test_data/build_phase/dist.ini
 test_data/build_phase/lib/Digest/MD5.js
 test_data/build_phase/script/after_build.pl
 test_data/build_phase/script/before_build.pl
+test_data/build_phase/script/no_trial.pl
 test_data/global/config.ini
 test_data/profiles/default/profile.ini
 test_data/test_phase/dist.ini

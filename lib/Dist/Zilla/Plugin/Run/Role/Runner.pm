@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::Role::Runner::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.015';
+  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.016';
 }
 # ABSTRACT: Role for the packages of Dist::Zilla::Plugin::Run
 use Moose::Role;
@@ -23,6 +23,12 @@ has perlpath => (
 );
 
 has run => (
+    is => 'ro',
+    isa  => 'ArrayRef',
+    default => sub { [] },
+);
+
+has run_no_trial => (
     is => 'ro',
     isa  => 'ArrayRef',
     default => sub { [] },
@@ -45,27 +51,40 @@ sub call_script {
     my ( $self, $params ) = @_;
 
     foreach my $run_cmd (@{$self->run}) {
+        $self->run_cmd($run_cmd, $params);
+    }
 
-        if ($run_cmd) {
-            my $command = $self->build_formatter($params)->format($run_cmd);
-            $self->log("Executing: $command");
-
-            # autoflush STDOUT so we can see command output right away
-            local $| = 1;
-            # combine stdout and stderr for ease of proxying through the logger
-            my $pid = IPC::Open3::open3(my ($in, $out), undef, $command);
-            while(defined(my $line = <$out>)){
-                chomp($line); # logger appends its own newline
-                $self->log($line);
-            }
-            # zombie repellent
-            waitpid($pid, 0);
-            my $status = ($? >> 8);
-
-            $self->log_fatal("Command exited with status $status ($?)") if $status;
-            $self->log("Command executed successfully");
+    foreach my $run_cmd (@{$self->run_no_trial}) {
+        if ($self->zilla->is_trial) {
+            $self->log("Not executing, because trial: $run_cmd");
+        } else {
+            $self->run_cmd($run_cmd, $params);
         }
-    } 
+    }
+
+}
+
+sub run_cmd {
+    my ( $self, $run_cmd, $params ) = @_;
+    if ($run_cmd) {
+        my $command = $self->build_formatter($params)->format($run_cmd);
+        $self->log("Executing: $command");
+
+        # autoflush STDOUT so we can see command output right away
+        local $| = 1;
+        # combine stdout and stderr for ease of proxying through the logger
+        my $pid = IPC::Open3::open3(my ($in, $out), undef, $command);
+        while(defined(my $line = <$out>)){
+            chomp($line); # logger appends its own newline
+            $self->log($line);
+        }
+        # zombie repellent
+        waitpid($pid, 0);
+        my $status = ($? >> 8);
+
+        $self->log_fatal("Command exited with status $status ($?)") if $status;
+        $self->log("Command executed successfully");
+    }
 }
 
 around mvp_multivalue_args => sub {
@@ -73,7 +92,7 @@ around mvp_multivalue_args => sub {
     
     my @res = $self->$original();
 
-    push @res, qw( run );
+    push @res, qw( run run_no_trial );
     
     @res; 
 };
@@ -135,6 +154,7 @@ sub current_perl_path {
 # vim: set ts=4 sts=4 sw=4 expandtab smarttab:
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -143,7 +163,7 @@ Dist::Zilla::Plugin::Run::Role::Runner - Role for the packages of Dist::Zilla::P
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 DESCRIPTION
 
@@ -161,4 +181,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
