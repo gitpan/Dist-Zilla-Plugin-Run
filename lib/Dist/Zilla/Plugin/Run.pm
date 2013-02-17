@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::VERSION = '0.016';
+  $Dist::Zilla::Plugin::Run::VERSION = '0.017';
 }
 # ABSTRACT: Run external commands at specific phases of Dist::Zilla
 
@@ -23,7 +23,7 @@ Dist::Zilla::Plugin::Run - Run external commands at specific phases of Dist::Zil
 
 =head1 VERSION
 
-version 0.016
+version 0.017
 
 =head1 SYNOPSIS
 

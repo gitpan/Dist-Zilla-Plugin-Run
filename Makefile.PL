@@ -33,7 +33,7 @@ my %WriteMakefileArgs = (
     "Test::File::ShareDir" => 0,
     "namespace::autoclean" => "0.11"
   },
-  "VERSION" => "0.016",
+  "VERSION" => "0.017",
   "test" => {
     "TESTS" => "t/*.t"
   }

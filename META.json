@@ -53,7 +53,7 @@
          "web" : "https://github.com/Getty/p5-dist-zilla-plugin-run"
       }
    },
-   "version" : "0.016",
+   "version" : "0.017",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.014002"
@@ -214,6 +214,11 @@
             "class" : "Dist::Zilla::Plugin::Git::Push",
             "name" : "@GETTY/@Git/Push",
             "version" : "2.009"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::CheckChangesHasContent",
+            "name" : "CheckChangesHasContent",
+            "version" : "0.006"
          },
          {
             "class" : "Dist::Zilla::Plugin::Prereqs",

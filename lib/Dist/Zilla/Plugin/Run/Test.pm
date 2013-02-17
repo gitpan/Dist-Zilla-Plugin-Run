@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::Test::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::Test::VERSION = '0.016';
+  $Dist::Zilla::Plugin::Run::Test::VERSION = '0.017';
 }
 # ABSTRACT: execute a command of the distribution after build
 use Moose;
@@ -38,7 +38,7 @@ Dist::Zilla::Plugin::Run::Test - execute a command of the distribution after bui
 
 =head1 VERSION
 
-version 0.016
+version 0.017
 
 =head1 SYNOPSIS
 
