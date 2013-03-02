@@ -1,5 +1,9 @@
 Revision history for Dist-Zilla-Plugin-Run
 
+0.018     2013-03-02 18:46:39 Europe/Berlin
+
+  - Added new options, cleaned up documentation
+
 0.017     2013-02-16 21:20:54 America/Phoenix
 
   - Fix silly bug in tests for non-unix platforms

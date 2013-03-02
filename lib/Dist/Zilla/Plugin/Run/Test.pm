@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::Test::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::Test::VERSION = '0.017';
+  $Dist::Zilla::Plugin::Run::Test::VERSION = '0.018';
 }
 # ABSTRACT: execute a command of the distribution after build
 use Moose;
@@ -29,7 +29,6 @@ sub test {
 1;
 
 __END__
-
 =pod
 
 =head1 NAME
@@ -38,7 +37,7 @@ Dist::Zilla::Plugin::Run::Test - execute a command of the distribution after bui
 
 =head1 VERSION
 
-version 0.017
+version 0.018
 
 =head1 SYNOPSIS
 
@@ -74,3 +73,4 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
+

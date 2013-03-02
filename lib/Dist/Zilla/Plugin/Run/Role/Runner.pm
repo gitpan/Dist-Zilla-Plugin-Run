@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::Role::Runner::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.017';
+  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.018';
 }
 # ABSTRACT: Role for the packages of Dist::Zilla::Plugin::Run
 use Moose::Role;
@@ -28,7 +28,25 @@ has run => (
     default => sub { [] },
 );
 
+has run_if_trial => (
+    is => 'ro',
+    isa  => 'ArrayRef',
+    default => sub { [] },
+);
+
 has run_no_trial => (
+    is => 'ro',
+    isa  => 'ArrayRef',
+    default => sub { [] },
+);
+
+has run_if_release => (
+    is => 'ro',
+    isa  => 'ArrayRef',
+    default => sub { [] },
+);
+
+has run_no_release => (
     is => 'ro',
     isa  => 'ArrayRef',
     default => sub { [] },
@@ -54,9 +72,37 @@ sub call_script {
         $self->run_cmd($run_cmd, $params);
     }
 
+    my $is_trial = $self->zilla->is_trial ? 1 : 0;
+
+    foreach my $run_cmd (@{$self->run_if_trial}) {
+        if ($is_trial) {
+            $self->run_cmd($run_cmd, $params);
+        } else {
+            $self->log("Not executing, because no trial: $run_cmd");
+        }
+    }
+
     foreach my $run_cmd (@{$self->run_no_trial}) {
-        if ($self->zilla->is_trial) {
+        if ($is_trial) {
             $self->log("Not executing, because trial: $run_cmd");
+        } else {
+            $self->run_cmd($run_cmd, $params);
+        }
+    }
+
+    my $is_release = defined $ENV{'DZIL_RELEASING'} && $ENV{'DZIL_RELEASING'} == 1 ? 1 : 0;
+
+    foreach my $run_cmd (@{$self->run_if_release}) {
+        if ($is_release) {
+            $self->run_cmd($run_cmd, $params);
+        } else {
+            $self->log("Not executing, because no release: $run_cmd");
+        }
+    }
+
+    foreach my $run_cmd (@{$self->run_no_release}) {
+        if ($is_release) {
+            $self->log("Not executing, because release: $run_cmd");
         } else {
             $self->run_cmd($run_cmd, $params);
         }
@@ -92,7 +138,7 @@ around mvp_multivalue_args => sub {
     
     my @res = $self->$original();
 
-    push @res, qw( run run_no_trial );
+    push @res, qw( run run_no_trial run_if_trial run_if_release run_no_release );
     
     @res; 
 };
@@ -154,7 +200,6 @@ sub current_perl_path {
 # vim: set ts=4 sts=4 sw=4 expandtab smarttab:
 
 __END__
-
 =pod
 
 =head1 NAME
@@ -163,7 +208,7 @@ Dist::Zilla::Plugin::Run::Role::Runner - Role for the packages of Dist::Zilla::P
 
 =head1 VERSION
 
-version 0.017
+version 0.018
 
 =head1 DESCRIPTION
 
@@ -181,3 +226,4 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
+

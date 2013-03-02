@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::VERSION = '0.017';
+  $Dist::Zilla::Plugin::Run::VERSION = '0.018';
 }
 # ABSTRACT: Run external commands at specific phases of Dist::Zilla
 
@@ -14,7 +14,6 @@ BEGIN {
 1;
 
 __END__
-
 =pod
 
 =head1 NAME
@@ -23,7 +22,7 @@ Dist::Zilla::Plugin::Run - Run external commands at specific phases of Dist::Zil
 
 =head1 VERSION
 
-version 0.017
+version 0.018
 
 =head1 SYNOPSIS
 
@@ -55,6 +54,8 @@ version 0.017
 
   [Run::Test]
   run = script/tester.pl --name %n --version %v some_file.ext
+  run_if_release = ./Build install
+  run_if_release = make install
 
   [Run::AfterMint]
   run = some command %d
@@ -63,8 +64,28 @@ version 0.017
 
 Run arbitrary commands at various L<Dist::Zilla> phases.
 
-Use 'run_no_trial' instead of 'run' to only run a given command
-if this isn't a I<trial> build/release.
+=head1 PARAMETERS
+
+=head2 run
+
+Run the specific command at the specific Dist::Zilla phase given by the
+plugin, like I<[Run::Release]> runs on release phase.
+
+=head2 run_no_trial
+
+Only run the given command if this isn't a I<trial> build or release.
+
+=head2 run_trial
+
+Only run the given command if this is a I<trial> build or release.
+
+=head2 run_if_release
+
+Only run the given command if this is a release.
+
+=head2 run_no_release
+
+Only run a given command if this isn't a release.
 
 =head1 CONVERSIONS
 
@@ -117,3 +138,4 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
+
