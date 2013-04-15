@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::Release::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::Release::VERSION = '0.018';
+  $Dist::Zilla::Plugin::Run::Release::VERSION = '0.019';
 }
 # ABSTRACT: execute a command of the distribution on release
 use Moose;
@@ -29,6 +29,7 @@ sub release {
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -37,7 +38,7 @@ Dist::Zilla::Plugin::Run::Release - execute a command of the distribution on rel
 
 =head1 VERSION
 
-version 0.018
+version 0.019
 
 =head1 SYNOPSIS
 
@@ -82,4 +83,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

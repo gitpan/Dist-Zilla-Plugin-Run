@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::Role::Runner::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.018';
+  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.019';
 }
 # ABSTRACT: Role for the packages of Dist::Zilla::Plugin::Run
 use Moose::Role;
@@ -161,25 +161,29 @@ sub build_formatter {
         d => $dir,
 
         # dist name
-        n => $self->zilla->name,
+        n => sub { $self->zilla->name },
 
         # backward compatibility (don't error)
         s => '',
 
         # portability
         p => $path_separator,
-        x => $self->perlpath,
+        x => sub { $self->perlpath },
     };
 
     # available during build, not mint
     unless( $params->{minting} ){
-        $codes->{v} = $self->zilla->version;
+        $codes->{v} = sub { $self->zilla->version };
     }
 
     # positional replace (backward compatible)
     if( my @pos = @{ $params->{pos} || [] } ){
         # where are you defined-or // operator?
-        $codes->{s} = sub { my $s = shift(@pos); defined($s) ? $s : '' };
+        $codes->{s} = sub {
+            my $s = shift(@pos);
+            $s = $s->() if ref $s eq 'CODE';
+            defined($s) ? $s : '';
+        };
     }
 
     return String::Formatter->new({ codes => $codes });
@@ -200,6 +204,7 @@ sub current_perl_path {
 # vim: set ts=4 sts=4 sw=4 expandtab smarttab:
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -208,7 +213,7 @@ Dist::Zilla::Plugin::Run::Role::Runner - Role for the packages of Dist::Zilla::P
 
 =head1 VERSION
 
-version 0.018
+version 0.019
 
 =head1 DESCRIPTION
 
@@ -226,4 +231,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
