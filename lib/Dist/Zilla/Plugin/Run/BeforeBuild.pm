@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::BeforeBuild::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Dist::Zilla::Plugin::Run::BeforeBuild::VERSION = '0.019';
+  $Dist::Zilla::Plugin::Run::BeforeBuild::VERSION = '0.020';
 }
 # ABSTRACT: execute a command of the distribution before build
 use Moose;
@@ -28,7 +28,6 @@ sub before_build {
 1;
 
 __END__
-
 =pod
 
 =head1 NAME
@@ -37,7 +36,7 @@ Dist::Zilla::Plugin::Run::BeforeBuild - execute a command of the distribution be
 
 =head1 VERSION
 
-version 0.019
+version 0.020
 
 =head1 SYNOPSIS
 
@@ -76,3 +75,4 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
+

@@ -32,9 +32,10 @@ my %WriteMakefileArgs = (
     "namespace::autoclean" => "0.11"
   },
   "TEST_REQUIRES" => {
+    "Test::LoadAllModules" => "0.021",
     "Test::More" => "0.96"
   },
-  "VERSION" => "0.019",
+  "VERSION" => "0.020",
   "test" => {
     "TESTS" => "t/*.t"
   }
