@@ -5,10 +5,8 @@ package Dist::Zilla::Plugin::Run::AfterRelease;
 BEGIN {
   $Dist::Zilla::Plugin::Run::AfterRelease::AUTHORITY = 'cpan:GETTY';
 }
-{
-  $Dist::Zilla::Plugin::Run::AfterRelease::VERSION = '0.020';
-}
 # ABSTRACT: execute a command of the distribution after release
+$Dist::Zilla::Plugin::Run::AfterRelease::VERSION = '0.021';
 use Moose;
 with qw(
 	Dist::Zilla::Role::AfterRelease
@@ -29,6 +27,7 @@ sub after_release {
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -37,7 +36,7 @@ Dist::Zilla::Plugin::Run::AfterRelease - execute a command of the distribution a
 
 =head1 VERSION
 
-version 0.020
+version 0.021
 
 =head1 SYNOPSIS
 
@@ -74,14 +73,13 @@ The 2nd C<%s> will be replaced by the dist version.
 
 =head1 AUTHOR
 
-Torsten Raudssus <torsten@raudssus.de> L<http://www.raudssus.de/>
+Torsten Raudssus <torsten@raudss.us> L<https://raudss.us/>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by L<Raudssus Social Software|http://www.raudssus.de/>.
+This software is copyright (c) 2010 by L<Raudssus Social Software|https://raudss.us/>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

@@ -5,15 +5,11 @@ package Dist::Zilla::Plugin::Run::Role::Runner;
 BEGIN {
   $Dist::Zilla::Plugin::Run::Role::Runner::AUTHORITY = 'cpan:GETTY';
 }
-{
-  $Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.020';
-}
 # ABSTRACT: Role for the packages of Dist::Zilla::Plugin::Run
+$Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.021';
 use Moose::Role;
-use String::Formatter 0.102082 ();
 use namespace::autoclean;
 use File::Spec (); # core
-use IPC::Open3 (); # core
 use Config     (); # core
 
 has perlpath => (
@@ -113,6 +109,8 @@ sub call_script {
 sub run_cmd {
     my ( $self, $run_cmd, $params ) = @_;
     if ($run_cmd) {
+        require IPC::Open3;  # core
+
         my $command = $self->build_formatter($params)->format($run_cmd);
         $self->log("Executing: $command");
 
@@ -147,6 +145,9 @@ my $path_separator = (File::Spec->catfile(qw(a b)) =~ m/^a(.+?)b$/)[0];
 
 sub build_formatter {
     my ( $self, $params ) = @_;
+
+    require String::Formatter;
+    String::Formatter->VERSION(0.102082);
 
     # stringify build directory
     my $dir = $params->{dir} || $self->zilla->built_in;
@@ -204,6 +205,7 @@ sub current_perl_path {
 # vim: set ts=4 sts=4 sw=4 expandtab smarttab:
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -212,7 +214,7 @@ Dist::Zilla::Plugin::Run::Role::Runner - Role for the packages of Dist::Zilla::P
 
 =head1 VERSION
 
-version 0.020
+version 0.021
 
 =head1 DESCRIPTION
 
@@ -220,14 +222,13 @@ This is the base role for all the plugins L<Dist::Zilla::Plugin::Run> delivers. 
 
 =head1 AUTHOR
 
-Torsten Raudssus <torsten@raudssus.de> L<http://www.raudssus.de/>
+Torsten Raudssus <torsten@raudss.us> L<https://raudss.us/>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by L<Raudssus Social Software|http://www.raudssus.de/>.
+This software is copyright (c) 2010 by L<Raudssus Social Software|https://raudss.us/>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
