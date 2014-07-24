@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::Role::Runner::AUTHORITY = 'cpan:GETTY';
 }
 # ABSTRACT: Role for the packages of Dist::Zilla::Plugin::Run
-$Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.021';
+$Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.022';
 use Moose::Role;
 use namespace::autoclean;
 use File::Spec (); # core
@@ -133,12 +133,12 @@ sub run_cmd {
 
 around mvp_multivalue_args => sub {
     my ($original, $self) = @_;
-    
+
     my @res = $self->$original();
 
     push @res, qw( run run_no_trial run_if_trial run_if_release run_no_release );
-    
-    @res; 
+
+    @res;
 };
 
 my $path_separator = (File::Spec->catfile(qw(a b)) =~ m/^a(.+?)b$/)[0];
@@ -200,6 +200,11 @@ sub current_perl_path {
     return $perl;
 }
 
+#pod =head1 DESCRIPTION
+#pod
+#pod This is the base role for all the plugins L<Dist::Zilla::Plugin::Run> delivers. You don't need this.
+#pod
+#pod =cut
 
 1;
 # vim: set ts=4 sts=4 sw=4 expandtab smarttab:
@@ -208,13 +213,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Dist::Zilla::Plugin::Run::Role::Runner - Role for the packages of Dist::Zilla::Plugin::Run
 
 =head1 VERSION
 
-version 0.021
+version 0.022
 
 =head1 DESCRIPTION
 

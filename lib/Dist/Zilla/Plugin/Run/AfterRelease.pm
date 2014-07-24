@@ -6,11 +6,11 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::AfterRelease::AUTHORITY = 'cpan:GETTY';
 }
 # ABSTRACT: execute a command of the distribution after release
-$Dist::Zilla::Plugin::Run::AfterRelease::VERSION = '0.021';
+$Dist::Zilla::Plugin::Run::AfterRelease::VERSION = '0.022';
 use Moose;
 with qw(
-	Dist::Zilla::Role::AfterRelease
-	Dist::Zilla::Plugin::Run::Role::Runner
+    Dist::Zilla::Role::AfterRelease
+    Dist::Zilla::Plugin::Run::Role::Runner
 );
 
 use namespace::autoclean;
@@ -23,6 +23,32 @@ sub after_release {
   });
 }
 
+#pod =head1 SYNOPSIS
+#pod
+#pod   [Run::AfterRelease]
+#pod   run = script/myapp_after.pl --archive %s --version %s
+#pod
+#pod or
+#pod
+#pod   [Run::AfterRelease / MyAppAfter]
+#pod   run = script/myapp_after.pl %s %s
+#pod
+#pod =head1 DESCRIPTION
+#pod
+#pod This plugin executes the specified command after releasing.
+#pod
+#pod =head1 POSITIONAL PARAMETERS
+#pod
+#pod See L<Dist::Zilla::Plugin::Run/CONVERSIONS>
+#pod for the list of common formatting variables available to all plugins.
+#pod
+#pod For backward compatibility:
+#pod
+#pod =for :list
+#pod * The 1st C<%s> will be replaced by the archive of the release.
+#pod * The 2nd C<%s> will be replaced by the dist version.
+#pod
+#pod =cut
 
 1;
 
@@ -30,13 +56,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Dist::Zilla::Plugin::Run::AfterRelease - execute a command of the distribution after release
 
 =head1 VERSION
 
-version 0.021
+version 0.022
 
 =head1 SYNOPSIS
 

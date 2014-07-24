@@ -6,11 +6,11 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::BeforeRelease::AUTHORITY = 'cpan:GETTY';
 }
 # ABSTRACT: execute a command of the distribution before release
-$Dist::Zilla::Plugin::Run::BeforeRelease::VERSION = '0.021';
+$Dist::Zilla::Plugin::Run::BeforeRelease::VERSION = '0.022';
 use Moose;
 with qw(
-	Dist::Zilla::Role::BeforeRelease
-	Dist::Zilla::Plugin::Run::Role::Runner
+    Dist::Zilla::Role::BeforeRelease
+    Dist::Zilla::Plugin::Run::Role::Runner
 );
 
 use namespace::autoclean;
@@ -23,6 +23,31 @@ sub before_release {
   });
 }
 
+#pod =head1 SYNOPSIS
+#pod
+#pod   [Run::BeforeRelease]
+#pod   run = script/myapp_before.pl %s
+#pod
+#pod or
+#pod
+#pod   [Run::BeforeRelease / MyAppBefore]
+#pod   run = script/myapp_before.pl %s
+#pod
+#pod =head1 DESCRIPTION
+#pod
+#pod This plugin executes the specified command before releasing.
+#pod
+#pod =head1 POSITIONAL PARAMETERS
+#pod
+#pod See L<Dist::Zilla::Plugin::Run/CONVERSIONS>
+#pod for the list of common formatting variables available to all plugins.
+#pod
+#pod For backward compatibility:
+#pod
+#pod =for :list
+#pod * The 1st C<%s> will be replaced by the archive of the release.
+#pod
+#pod =cut
 
 1;
 
@@ -30,13 +55,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Dist::Zilla::Plugin::Run::BeforeRelease - execute a command of the distribution before release
 
 =head1 VERSION
 
-version 0.021
+version 0.022
 
 =head1 SYNOPSIS
 

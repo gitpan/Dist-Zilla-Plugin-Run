@@ -6,23 +6,47 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::Test::AUTHORITY = 'cpan:GETTY';
 }
 # ABSTRACT: execute a command of the distribution after build
-$Dist::Zilla::Plugin::Run::Test::VERSION = '0.021';
+$Dist::Zilla::Plugin::Run::Test::VERSION = '0.022';
 use Moose;
 with qw(
-	Dist::Zilla::Role::TestRunner
-	Dist::Zilla::Plugin::Run::Role::Runner
+    Dist::Zilla::Role::TestRunner
+    Dist::Zilla::Plugin::Run::Role::Runner
 );
 
 use namespace::autoclean;
 
 sub test {
     my ($self, $dir) = @_;
-    
+
     $self->call_script({
         dir =>  $dir
     });
 }
 
+#pod =head1 SYNOPSIS
+#pod
+#pod   [Run::Test]
+#pod   run = script/tester.pl --name %n --version %v some_file.ext
+#pod
+#pod
+#pod =head1 DESCRIPTION
+#pod
+#pod This plugin executes the specified command during the test phase.
+#pod
+#pod =head1 CAVEAT
+#pod
+#pod Unlike the other [Run::*] plugins, when running the scripts, the
+#pod current working directory will be the directory with
+#pod newly built distribution. This is the way Dist::Zilla works.
+#pod
+#pod =head1 POSITIONAL PARAMETERS
+#pod
+#pod See L<Dist::Zilla::Plugin::Run/CONVERSIONS>
+#pod for the list of common formatting variables available to all plugins.
+#pod
+#pod There are no positional parameters for this plugin.
+#pod
+#pod =cut
 
 1;
 
@@ -30,13 +54,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Dist::Zilla::Plugin::Run::Test - execute a command of the distribution after build
 
 =head1 VERSION
 
-version 0.021
+version 0.022
 
 =head1 SYNOPSIS
 
@@ -49,8 +75,8 @@ This plugin executes the specified command during the test phase.
 
 =head1 CAVEAT
 
-Unlike the other [Run::*] plugins, when running the scripts, the 
-current working directory will be the directory with 
+Unlike the other [Run::*] plugins, when running the scripts, the
+current working directory will be the directory with
 newly built distribution. This is the way Dist::Zilla works.
 
 =head1 POSITIONAL PARAMETERS

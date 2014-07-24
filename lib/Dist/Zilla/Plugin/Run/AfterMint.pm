@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::AfterMint::AUTHORITY = 'cpan:GETTY';
 }
 # ABSTRACT: Execute a command after a new dist is minted
-$Dist::Zilla::Plugin::Run::AfterMint::VERSION = '0.021';
+$Dist::Zilla::Plugin::Run::AfterMint::VERSION = '0.022';
 use Moose;
 with qw(
   Dist::Zilla::Role::AfterMint
@@ -23,6 +23,21 @@ sub after_mint {
   });
 }
 
+#pod =head1 SYNOPSIS
+#pod
+#pod   [Run::AfterMint]
+#pod   run = some command %d
+#pod
+#pod =head1 DESCRIPTION
+#pod
+#pod This plugin executes the specified command after minting a new dist.
+#pod
+#pod =head1 CONVERSIONS
+#pod
+#pod See L<Dist::Zilla::Plugin::Run/CONVERSIONS>
+#pod for the list of common formatting variables available to all plugins.
+#pod
+#pod =cut
 
 1;
 
@@ -30,13 +45,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Dist::Zilla::Plugin::Run::AfterMint - Execute a command after a new dist is minted
 
 =head1 VERSION
 
-version 0.021
+version 0.022
 
 =head1 SYNOPSIS
 

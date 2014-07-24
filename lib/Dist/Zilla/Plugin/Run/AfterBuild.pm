@@ -6,11 +6,11 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::AfterBuild::AUTHORITY = 'cpan:GETTY';
 }
 # ABSTRACT: execute a command of the distribution after build
-$Dist::Zilla::Plugin::Run::AfterBuild::VERSION = '0.021';
+$Dist::Zilla::Plugin::Run::AfterBuild::VERSION = '0.022';
 use Moose;
 with qw(
-	Dist::Zilla::Role::AfterBuild
-	Dist::Zilla::Plugin::Run::Role::Runner
+    Dist::Zilla::Role::AfterBuild
+    Dist::Zilla::Plugin::Run::Role::Runner
 );
 
 use namespace::autoclean;
@@ -23,6 +23,29 @@ sub after_build {
   });
 }
 
+#pod =head1 SYNOPSIS
+#pod
+#pod   [Run::AfterBuild]
+#pod   run = script/do_this.pl --dir %s --version %s
+#pod   run = script/do_that.pl
+#pod
+#pod
+#pod =head1 DESCRIPTION
+#pod
+#pod This plugin executes the specified command after building the dist.
+#pod
+#pod =head1 POSITIONAL PARAMETERS
+#pod
+#pod See L<Dist::Zilla::Plugin::Run/CONVERSIONS>
+#pod for the list of common formatting variables available to all plugins.
+#pod
+#pod For backward compatibility:
+#pod
+#pod =for :list
+#pod * The 1st C<%s> will be replaced by the directory in which the dist was built.
+#pod * The 2nd C<%s> will be replaced by the dist version.
+#pod
+#pod =cut
 
 1;
 
@@ -30,13 +53,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Dist::Zilla::Plugin::Run::AfterBuild - execute a command of the distribution after build
 
 =head1 VERSION
 
-version 0.021
+version 0.022
 
 =head1 SYNOPSIS
 
