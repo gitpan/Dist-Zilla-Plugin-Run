@@ -24,6 +24,7 @@ my @files = (
     't/30_all_phases.t',
     't/40_test_phase.t',
     't/50_mint.t',
+    't/60_redacted_configs.t',
     'xt/author/00-compile.t',
     'xt/author/pod-spell.t',
     'xt/release/changes_has_content.t',

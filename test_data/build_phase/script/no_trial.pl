@@ -1,7 +1,5 @@
-#!/usr/bin/env perl
-
 use strict;
 use warnings;
-use Path::Class;
+use Path::Tiny;
 
-dir($ARGV[0], 'lib')->file('NO_TRIAL.txt')->openw()->print(":-P");
+path($ARGV[0], 'lib', 'NO_TRIAL.txt')->spew(":-P");

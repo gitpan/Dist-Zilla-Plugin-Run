@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::Release::AUTHORITY = 'cpan:GETTY';
 }
 # ABSTRACT: execute a command of the distribution on release
-$Dist::Zilla::Plugin::Run::Release::VERSION = '0.022';
+$Dist::Zilla::Plugin::Run::Release::VERSION = '0.023';
 use Moose;
 with qw(
     Dist::Zilla::Role::Releaser
@@ -65,7 +65,7 @@ Dist::Zilla::Plugin::Run::Release - execute a command of the distribution on rel
 
 =head1 VERSION
 
-version 0.022
+version 0.023
 
 =head1 SYNOPSIS
 

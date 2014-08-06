@@ -5,8 +5,8 @@ package Dist::Zilla::Plugin::Run;
 BEGIN {
   $Dist::Zilla::Plugin::Run::AUTHORITY = 'cpan:GETTY';
 }
-# git description: 0.021-7-gbb7a0f3
-$Dist::Zilla::Plugin::Run::VERSION = '0.022';
+# git description: 0.022-14-ge39fe5a
+$Dist::Zilla::Plugin::Run::VERSION = '0.023';
 # ABSTRACT: Run external commands at specific phases of Dist::Zilla
 
 #pod =head1 SYNOPSIS
@@ -60,7 +60,7 @@ $Dist::Zilla::Plugin::Run::VERSION = '0.022';
 #pod
 #pod Only run the given command if this isn't a I<trial> build or release.
 #pod
-#pod =head2 run_trial
+#pod =head2 run_if_trial
 #pod
 #pod Only run the given command if this is a I<trial> build or release.
 #pod
@@ -71,6 +71,15 @@ $Dist::Zilla::Plugin::Run::VERSION = '0.022';
 #pod =head2 run_no_release
 #pod
 #pod Only run a given command if this isn't a release.
+#pod
+#pod =head2 censor_commands
+#pod
+#pod Normally, C<run*> commands are included in distribution metadata when used
+#pod with the L<[MetaConfig]|Dist::Zilla::Plugin::MetaConfig> plugin. To bypass
+#pod this, set C<censor_commands = 1>.  Additionally, this command is set to true
+#pod automatically when a URL with embedded password is present.
+#pod
+#pod Defaults to false.
 #pod
 #pod =head1 CONVERSIONS
 #pod
@@ -107,7 +116,7 @@ Dist::Zilla::Plugin::Run - Run external commands at specific phases of Dist::Zil
 
 =head1 VERSION
 
-version 0.022
+version 0.023
 
 =head1 SYNOPSIS
 
@@ -160,7 +169,7 @@ plugin, like I<[Run::Release]> runs on release phase.
 
 Only run the given command if this isn't a I<trial> build or release.
 
-=head2 run_trial
+=head2 run_if_trial
 
 Only run the given command if this is a I<trial> build or release.
 
@@ -171,6 +180,15 @@ Only run the given command if this is a release.
 =head2 run_no_release
 
 Only run a given command if this isn't a release.
+
+=head2 censor_commands
+
+Normally, C<run*> commands are included in distribution metadata when used
+with the L<[MetaConfig]|Dist::Zilla::Plugin::MetaConfig> plugin. To bypass
+this, set C<censor_commands = 1>.  Additionally, this command is set to true
+automatically when a URL with embedded password is present.
+
+Defaults to false.
 
 =head1 CONVERSIONS
 
@@ -223,6 +241,8 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =head1 CONTRIBUTORS
+
+=for stopwords Al Newkirk Karen Etheridge Nickolay Platonov Olivier Mengué Randy Stauner Tatsuhiko Miyagawa Torsten Raudssus
 
 =over 4
 

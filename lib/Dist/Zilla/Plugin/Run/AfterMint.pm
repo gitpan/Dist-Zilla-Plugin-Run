@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::AfterMint::AUTHORITY = 'cpan:GETTY';
 }
 # ABSTRACT: Execute a command after a new dist is minted
-$Dist::Zilla::Plugin::Run::AfterMint::VERSION = '0.022';
+$Dist::Zilla::Plugin::Run::AfterMint::VERSION = '0.023';
 use Moose;
 with qw(
   Dist::Zilla::Role::AfterMint
@@ -53,7 +53,7 @@ Dist::Zilla::Plugin::Run::AfterMint - Execute a command after a new dist is mint
 
 =head1 VERSION
 
-version 0.022
+version 0.023
 
 =head1 SYNOPSIS
 
