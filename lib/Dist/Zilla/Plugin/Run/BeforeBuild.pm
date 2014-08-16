@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::BeforeBuild::AUTHORITY = 'cpan:GETTY';
 }
 # ABSTRACT: execute a command of the distribution before build
-$Dist::Zilla::Plugin::Run::BeforeBuild::VERSION = '0.023';
+$Dist::Zilla::Plugin::Run::BeforeBuild::VERSION = '0.024'; # TRIAL
 use Moose;
 with qw(
     Dist::Zilla::Role::BeforeBuild
@@ -59,7 +59,7 @@ Dist::Zilla::Plugin::Run::BeforeBuild - execute a command of the distribution be
 
 =head1 VERSION
 
-version 0.023
+version 0.024
 
 =head1 SYNOPSIS
 

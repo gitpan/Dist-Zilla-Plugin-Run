@@ -59,12 +59,12 @@ EOW
         "ExtUtils::MakeMaker" => 0,
         "Module::Build::Tiny" => "0.037"
       },
-      "dist_abstract" => "Run external commands at specific phases of Dist::Zilla",
+      "dist_abstract" => "Run external commands and code at specific phases of Dist::Zilla",
       "dist_author" => [
         "Torsten Raudssus <torsten\@raudss.us> L<https://raudss.us/>"
       ],
       "dist_name" => "Dist-Zilla-Plugin-Run",
-      "dist_version" => "0.023",
+      "dist_version" => "0.024",
       "license" => "perl",
       "module_name" => "Dist::Zilla::Plugin::Run",
       "recommends" => {},
@@ -90,7 +90,6 @@ EOW
       },
       "script_files" => [],
       "test_requires" => {
-        "Dist::Zilla::Tester" => 0,
         "ExtUtils::MakeMaker" => 0,
         "File::Spec" => 0,
         "File::pushd" => 0,
@@ -98,16 +97,15 @@ EOW
         "Path::Tiny" => 0,
         "Test::DZil" => 0,
         "Test::Deep" => 0,
+        "Test::Fatal" => 0,
         "Test::File::ShareDir" => 0,
         "Test::More" => "0.88",
-        "if" => 0,
-        "lib" => 0
+        "if" => 0
       }
     );
 
 
     my %fallback_build_requires = (
-      "Dist::Zilla::Tester" => 0,
       "ExtUtils::MakeMaker" => 0,
       "File::Spec" => 0,
       "File::pushd" => 0,
@@ -115,10 +113,10 @@ EOW
       "Path::Tiny" => 0,
       "Test::DZil" => 0,
       "Test::Deep" => 0,
+      "Test::Fatal" => 0,
       "Test::File::ShareDir" => 0,
       "Test::More" => "0.88",
-      "if" => 0,
-      "lib" => 0
+      "if" => 0
     );
 
 

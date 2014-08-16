@@ -5,19 +5,23 @@ package Dist::Zilla::Plugin::Run;
 BEGIN {
   $Dist::Zilla::Plugin::Run::AUTHORITY = 'cpan:GETTY';
 }
-# git description: 0.022-14-ge39fe5a
-$Dist::Zilla::Plugin::Run::VERSION = '0.023';
-# ABSTRACT: Run external commands at specific phases of Dist::Zilla
+# git description: 0.023-8-g82d1da4
+$Dist::Zilla::Plugin::Run::VERSION = '0.024'; # TRIAL
+# ABSTRACT: Run external commands and code at specific phases of Dist::Zilla
 
 #pod =head1 SYNOPSIS
 #pod
 #pod   [Run::AfterBuild]
 #pod   run = script/do_this.pl --dir %s --version %s
 #pod   run = script/do_that.pl
+#pod   eval = unlink scratch.dat
 #pod
 #pod   [Run::BeforeBuild]
 #pod   run = script/do_this.pl --version %s
 #pod   run = script/do_that.pl
+#pod   eval = if ($ENV{SOMETHING}) {
+#pod   eval =   shift->log('some message')
+#pod   eval = }
 #pod
 #pod   [Run::BeforeRelease]
 #pod   run = script/myapp_before1.pl %s
@@ -44,17 +48,18 @@ $Dist::Zilla::Plugin::Run::VERSION = '0.023';
 #pod
 #pod   [Run::AfterMint]
 #pod   run = some command %d
+#pod   eval = unlink scratch.dat
 #pod
 #pod =head1 DESCRIPTION
 #pod
-#pod Run arbitrary commands at various L<Dist::Zilla> phases.
+#pod Run arbitrary commands and code at various L<Dist::Zilla> phases.
 #pod
 #pod =head1 PARAMETERS
 #pod
 #pod =head2 run
 #pod
-#pod Run the specific command at the specific Dist::Zilla phase given by the
-#pod plugin, like I<[Run::Release]> runs on release phase.
+#pod Run the specific command at the specific L<Dist::Zilla> phase given by the
+#pod plugin. For example, C<[Run::Release]> runs during the release phase.
 #pod
 #pod =head2 run_no_trial
 #pod
@@ -71,6 +76,15 @@ $Dist::Zilla::Plugin::Run::VERSION = '0.023';
 #pod =head2 run_no_release
 #pod
 #pod Only run a given command if this isn't a release.
+#pod
+#pod =head2 eval (EXPERIMENTAL)
+#pod
+#pod Treats the input as a list of lines of Perl code; the code is evaluated at the
+#pod specific L<Dist::Zilla> phase given by the plugin. The code is executed in its
+#pod own C<eval> scope, within a subroutine body; C<@_> contains the instance of the
+#pod plugin executing the code. (Remember that C<shift> in an C<eval> actually
+#pod operates on C<@ARGV>, not C<@_>, so to access the plugin instance, use
+#pod C<$_[0]>.)
 #pod
 #pod =head2 censor_commands
 #pod
@@ -112,21 +126,25 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Plugin::Run - Run external commands at specific phases of Dist::Zilla
+Dist::Zilla::Plugin::Run - Run external commands and code at specific phases of Dist::Zilla
 
 =head1 VERSION
 
-version 0.023
+version 0.024
 
 =head1 SYNOPSIS
 
   [Run::AfterBuild]
   run = script/do_this.pl --dir %s --version %s
   run = script/do_that.pl
+  eval = unlink scratch.dat
 
   [Run::BeforeBuild]
   run = script/do_this.pl --version %s
   run = script/do_that.pl
+  eval = if ($ENV{SOMETHING}) {
+  eval =   shift->log('some message')
+  eval = }
 
   [Run::BeforeRelease]
   run = script/myapp_before1.pl %s
@@ -153,17 +171,18 @@ version 0.023
 
   [Run::AfterMint]
   run = some command %d
+  eval = unlink scratch.dat
 
 =head1 DESCRIPTION
 
-Run arbitrary commands at various L<Dist::Zilla> phases.
+Run arbitrary commands and code at various L<Dist::Zilla> phases.
 
 =head1 PARAMETERS
 
 =head2 run
 
-Run the specific command at the specific Dist::Zilla phase given by the
-plugin, like I<[Run::Release]> runs on release phase.
+Run the specific command at the specific L<Dist::Zilla> phase given by the
+plugin. For example, C<[Run::Release]> runs during the release phase.
 
 =head2 run_no_trial
 
@@ -180,6 +199,15 @@ Only run the given command if this is a release.
 =head2 run_no_release
 
 Only run a given command if this isn't a release.
+
+=head2 eval (EXPERIMENTAL)
+
+Treats the input as a list of lines of Perl code; the code is evaluated at the
+specific L<Dist::Zilla> phase given by the plugin. The code is executed in its
+own C<eval> scope, within a subroutine body; C<@_> contains the instance of the
+plugin executing the code. (Remember that C<shift> in an C<eval> actually
+operates on C<@ARGV>, not C<@_>, so to access the plugin instance, use
+C<$_[0]>.)
 
 =head2 censor_commands
 
@@ -242,17 +270,21 @@ the same terms as the Perl 5 programming language system itself.
 
 =head1 CONTRIBUTORS
 
-=for stopwords Al Newkirk Karen Etheridge Nickolay Platonov Olivier Mengué Randy Stauner Tatsuhiko Miyagawa Torsten Raudssus
+=for stopwords Randy Stauner Karen Etheridge Torsten Raudssus Nickolay Platonov Olivier Mengué Al Newkirk Tatsuhiko Miyagawa
 
 =over 4
 
 =item *
 
-Al Newkirk <github@alnewkirk.com>
+Randy Stauner <rwstauner@cpan.org>
 
 =item *
 
 Karen Etheridge <ether@cpan.org>
+
+=item *
+
+Torsten Raudssus <getty@cpan.org>
 
 =item *
 
@@ -264,15 +296,11 @@ Olivier Mengué <dolmen@cpan.org>
 
 =item *
 
-Randy Stauner <rwstauner@cpan.org>
+Al Newkirk <github@alnewkirk.com>
 
 =item *
 
 Tatsuhiko Miyagawa <miyagawa@cpan.org>
-
-=item *
-
-Torsten Raudssus <getty@cpan.org>
 
 =back
 

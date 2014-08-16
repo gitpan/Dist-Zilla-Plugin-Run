@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Run::AfterRelease::AUTHORITY = 'cpan:GETTY';
 }
 # ABSTRACT: execute a command of the distribution after release
-$Dist::Zilla::Plugin::Run::AfterRelease::VERSION = '0.023';
+$Dist::Zilla::Plugin::Run::AfterRelease::VERSION = '0.024'; # TRIAL
 use Moose;
 with qw(
     Dist::Zilla::Role::AfterRelease
@@ -64,7 +64,7 @@ Dist::Zilla::Plugin::Run::AfterRelease - execute a command of the distribution a
 
 =head1 VERSION
 
-version 0.023
+version 0.024
 
 =head1 SYNOPSIS
 

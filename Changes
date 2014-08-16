@@ -1,5 +1,9 @@
 Revision history for Dist-Zilla-Plugin-Run
 
+0.024     2014-08-16 00:36:01Z (TRIAL RELEASE)
+  - fix use of path separator in test to avoid failure on MSWin32
+  - new "eval" option, for executing Perl code
+
 0.023     2014-08-06 05:33:20Z
   - convert uses of Path::Class to Path::Tiny
   - dump config into metadata when [MetaConfig] used, but the
