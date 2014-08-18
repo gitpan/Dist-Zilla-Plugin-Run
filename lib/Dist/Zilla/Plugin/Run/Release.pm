@@ -2,11 +2,8 @@ use strict;
 use warnings;
 
 package Dist::Zilla::Plugin::Run::Release;
-BEGIN {
-  $Dist::Zilla::Plugin::Run::Release::AUTHORITY = 'cpan:GETTY';
-}
 # ABSTRACT: execute a command of the distribution on release
-$Dist::Zilla::Plugin::Run::Release::VERSION = '0.024'; # TRIAL
+$Dist::Zilla::Plugin::Run::Release::VERSION = '0.025'; # TRIAL
 use Moose;
 with qw(
     Dist::Zilla::Role::Releaser
@@ -65,7 +62,7 @@ Dist::Zilla::Plugin::Run::Release - execute a command of the distribution on rel
 
 =head1 VERSION
 
-version 0.024
+version 0.025
 
 =head1 SYNOPSIS
 

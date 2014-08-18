@@ -64,7 +64,7 @@ EOW
         "Torsten Raudssus <torsten\@raudss.us> L<https://raudss.us/>"
       ],
       "dist_name" => "Dist-Zilla-Plugin-Run",
-      "dist_version" => "0.024",
+      "dist_version" => "0.025",
       "license" => "perl",
       "module_name" => "Dist::Zilla::Plugin::Run",
       "recommends" => {},

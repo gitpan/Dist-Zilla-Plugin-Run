@@ -2,11 +2,8 @@ use strict;
 use warnings;
 
 package Dist::Zilla::Plugin::Run::Role::Runner;
-BEGIN {
-  $Dist::Zilla::Plugin::Run::Role::Runner::AUTHORITY = 'cpan:GETTY';
-}
 # ABSTRACT: Role for the packages of Dist::Zilla::Plugin::Run
-$Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.024'; # TRIAL
+$Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.025'; # TRIAL
 use Moose::Role;
 use namespace::autoclean;
 use File::Spec (); # core
@@ -270,7 +267,7 @@ Dist::Zilla::Plugin::Run::Role::Runner - Role for the packages of Dist::Zilla::P
 
 =head1 VERSION
 
-version 0.024
+version 0.025
 
 =head1 DESCRIPTION
 
