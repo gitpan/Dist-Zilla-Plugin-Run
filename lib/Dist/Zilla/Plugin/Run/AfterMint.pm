@@ -3,7 +3,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::Run::AfterMint;
 # ABSTRACT: Execute a command after a new dist is minted
-$Dist::Zilla::Plugin::Run::AfterMint::VERSION = '0.025'; # TRIAL
+$Dist::Zilla::Plugin::Run::AfterMint::VERSION = '0.026';
 use Moose;
 with qw(
   Dist::Zilla::Role::AfterMint
@@ -50,7 +50,7 @@ Dist::Zilla::Plugin::Run::AfterMint - Execute a command after a new dist is mint
 
 =head1 VERSION
 
-version 0.025
+version 0.026
 
 =head1 SYNOPSIS
 

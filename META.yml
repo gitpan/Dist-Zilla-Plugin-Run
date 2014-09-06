@@ -31,31 +31,31 @@ no_index:
 provides:
   Dist::Zilla::Plugin::Run:
     file: lib/Dist/Zilla/Plugin/Run.pm
-    version: '0.025'
+    version: '0.026'
   Dist::Zilla::Plugin::Run::AfterBuild:
     file: lib/Dist/Zilla/Plugin/Run/AfterBuild.pm
-    version: '0.025'
+    version: '0.026'
   Dist::Zilla::Plugin::Run::AfterMint:
     file: lib/Dist/Zilla/Plugin/Run/AfterMint.pm
-    version: '0.025'
+    version: '0.026'
   Dist::Zilla::Plugin::Run::AfterRelease:
     file: lib/Dist/Zilla/Plugin/Run/AfterRelease.pm
-    version: '0.025'
+    version: '0.026'
   Dist::Zilla::Plugin::Run::BeforeBuild:
     file: lib/Dist/Zilla/Plugin/Run/BeforeBuild.pm
-    version: '0.025'
+    version: '0.026'
   Dist::Zilla::Plugin::Run::BeforeRelease:
     file: lib/Dist/Zilla/Plugin/Run/BeforeRelease.pm
-    version: '0.025'
+    version: '0.026'
   Dist::Zilla::Plugin::Run::Release:
     file: lib/Dist/Zilla/Plugin/Run/Release.pm
-    version: '0.025'
+    version: '0.026'
   Dist::Zilla::Plugin::Run::Role::Runner:
     file: lib/Dist/Zilla/Plugin/Run/Role/Runner.pm
-    version: '0.025'
+    version: '0.026'
   Dist::Zilla::Plugin::Run::Test:
     file: lib/Dist/Zilla/Plugin/Run/Test.pm
-    version: '0.025'
+    version: '0.026'
 requires:
   Dist::Zilla::Role::AfterBuild: '0'
   Dist::Zilla::Role::AfterMint: '0'
@@ -80,10 +80,10 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-Plugin-Run
   homepage: https://github.com/Getty/p5-dist-zilla-plugin-run
   repository: https://github.com/Getty/p5-dist-zilla-plugin-run.git
-version: '0.025'
+version: '0.026'
 x_Dist_Zilla:
   perl:
-    version: '5.021002'
+    version: '5.021003'
   plugins:
     -
       class: Dist::Zilla::Plugin::Bootstrap::lib
@@ -94,14 +94,14 @@ x_Dist_Zilla:
           try_built: ~
           try_built_method: mtime
       name: Bootstrap::lib
-      version: '1.000005'
+      version: '1.001000'
     -
       class: Dist::Zilla::Plugin::Prereqs
       config:
         Dist::Zilla::Plugin::Prereqs:
           phase: develop
           type: requires
-      name: '@Author::ETHER/bundle_options'
+      name: '@Author::ETHER/bundle_plugins'
       version: '5.020'
     -
       class: Dist::Zilla::Plugin::Git::NextVersion
@@ -210,7 +210,7 @@ x_Dist_Zilla:
             - '@Author::ETHER/Examples'
           skips: []
       name: '@Author::ETHER/Test::Compile'
-      version: '2.045'
+      version: '2.046'
     -
       class: Dist::Zilla::Plugin::Test::NoTabs
       config:
@@ -256,9 +256,10 @@ x_Dist_Zilla:
       class: Dist::Zilla::Plugin::Test::Kwalitee
       config:
         Dist::Zilla::Plugin::Test::Kwalitee:
+          filename: xt/release/kwalitee.t
           skiptest: []
       name: '@Author::ETHER/Test::Kwalitee'
-      version: '2.08'
+      version: '2.11'
     -
       class: Dist::Zilla::Plugin::MojibakeTests
       name: '@Author::ETHER/MojibakeTests'
@@ -279,6 +280,13 @@ x_Dist_Zilla:
       class: Dist::Zilla::Plugin::PkgVersion
       name: '@Author::ETHER/PkgVersion'
       version: '5.020'
+    -
+      class: Dist::Zilla::Plugin::AuthorityFromModule
+      config:
+        Dist::Zilla::Plugin::AuthorityFromModule:
+          module: Dist::Zilla::Plugin::Run
+      name: '@Author::ETHER/AuthorityFromModule'
+      version: '0.002'
     -
       class: Dist::Zilla::Plugin::Authority
       name: '@Author::ETHER/Authority'
@@ -372,7 +380,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::ReadmeAnyFromPod
       name: '@Author::ETHER/ReadmeAnyFromPod'
-      version: '0.142250'
+      version: '0.142470'
     -
       class: Dist::Zilla::Plugin::GithubMeta
       name: '@Author::ETHER/GithubMeta'
@@ -401,7 +409,7 @@ x_Dist_Zilla:
           inherit_version: '1'
           meta_noindex: '1'
       name: '@Author::ETHER/MetaProvides::Package'
-      version: '2.000004'
+      version: '2.001002'
     -
       class: Dist::Zilla::Plugin::MetaConfig
       name: '@Author::ETHER/MetaConfig'
@@ -453,10 +461,26 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::ModuleBuildTiny::Fallback
       config:
+        Dist::Zilla::Plugin::ModuleBuildTiny::Fallback:
+          plugins:
+            -
+              class: Dist::Zilla::Plugin::ModuleBuild
+              config:
+                Dist::Zilla::Role::TestRunner:
+                  default_jobs: 9
+              name: ModuleBuildTiny::Fallback
+              version: '5.020'
+            -
+              class: Dist::Zilla::Plugin::ModuleBuildTiny
+              config:
+                Dist::Zilla::Role::TestRunner:
+                  default_jobs: 9
+              name: ModuleBuildTiny::Fallback
+              version: '0.007'
         Dist::Zilla::Role::TestRunner:
           default_jobs: 9
       name: '@Author::ETHER/ModuleBuildTiny::Fallback'
-      version: '0.005'
+      version: '0.006'
     -
       class: Dist::Zilla::Plugin::InstallGuide
       name: '@Author::ETHER/InstallGuide'
@@ -587,7 +611,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: 0
-          tag: 0.025-TRIAL
+          tag: '0.026'
           tag_format: '%v%t'
           tag_message: v%v%t
           time_zone: local
@@ -629,10 +653,10 @@ x_Dist_Zilla:
       class: Dist::Zilla::Plugin::Test::CleanNamespaces
       config:
         Dist::Zilla::Plugin::Test::CleanNamespaces:
-          filename: xt/release/clean-namespaces.t
+          filename: xt/author/clean-namespaces.t
           skips: []
       name: Test::CleanNamespaces
-      version: '0.005'
+      version: '0.006'
     -
       class: Dist::Zilla::Plugin::Run::AfterBuild
       config:
@@ -688,9 +712,10 @@ x_Dist_Zilla:
   zilla:
     class: Dist::Zilla::Dist::Builder
     config:
-      is_trial: '1'
+      is_trial: '0'
     version: '5.020'
 x_authority: cpan:GETTY
+x_authority_from_module: Dist::Zilla::Plugin::Run
 x_contributors:
   - 'Randy Stauner <rwstauner@cpan.org>'
   - 'Karen Etheridge <ether@cpan.org>'
@@ -699,3 +724,4 @@ x_contributors:
   - 'Olivier Mengué <dolmen@cpan.org>'
   - 'Al Newkirk <github@alnewkirk.com>'
   - 'Tatsuhiko Miyagawa <miyagawa@cpan.org>'
+x_permissions_from_module: Dist::Zilla::Plugin::Run

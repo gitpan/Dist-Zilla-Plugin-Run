@@ -3,7 +3,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::Run::BeforeRelease;
 # ABSTRACT: execute a command of the distribution before release
-$Dist::Zilla::Plugin::Run::BeforeRelease::VERSION = '0.025'; # TRIAL
+$Dist::Zilla::Plugin::Run::BeforeRelease::VERSION = '0.026';
 use Moose;
 with qw(
     Dist::Zilla::Role::BeforeRelease
@@ -60,7 +60,7 @@ Dist::Zilla::Plugin::Run::BeforeRelease - execute a command of the distribution 
 
 =head1 VERSION
 
-version 0.025
+version 0.026
 
 =head1 SYNOPSIS
 

@@ -2,8 +2,8 @@ use strict;
 use warnings;
 
 package Dist::Zilla::Plugin::Run;
-# git description: 0.024-TRIAL-3-gd7d2f5e
-$Dist::Zilla::Plugin::Run::VERSION = '0.025'; # TRIAL
+# git description: 0.025-TRIAL-3-gdfb1b61
+$Dist::Zilla::Plugin::Run::VERSION = '0.026';
 # ABSTRACT: Run external commands and code at specific phases of Dist::Zilla
 
 #pod =head1 SYNOPSIS
@@ -127,7 +127,7 @@ Dist::Zilla::Plugin::Run - Run external commands and code at specific phases of 
 
 =head1 VERSION
 
-version 0.025
+version 0.026
 
 =head1 SYNOPSIS
 

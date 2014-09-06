@@ -3,7 +3,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::Run::Role::Runner;
 # ABSTRACT: Role for the packages of Dist::Zilla::Plugin::Run
-$Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.025'; # TRIAL
+$Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.026';
 use Moose::Role;
 use namespace::autoclean;
 use File::Spec (); # core
@@ -237,7 +237,7 @@ sub build_formatter {
 }
 
 sub current_perl_path {
-    # see perlvar $^X
+    # see perlvar $^X for why we don't just use that here
     my $perl = $Config::Config{perlpath};
     if ($^O ne 'VMS') {
         $perl .= $Config::Config{_exe}
@@ -267,7 +267,7 @@ Dist::Zilla::Plugin::Run::Role::Runner - Role for the packages of Dist::Zilla::P
 
 =head1 VERSION
 
-version 0.025
+version 0.026
 
 =head1 DESCRIPTION
 
