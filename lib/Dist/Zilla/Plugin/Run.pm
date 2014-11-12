@@ -2,8 +2,8 @@ use strict;
 use warnings;
 
 package Dist::Zilla::Plugin::Run;
-# git description: 0.025-TRIAL-3-gdfb1b61
-$Dist::Zilla::Plugin::Run::VERSION = '0.026';
+# git description: 0.026-4-g10a8f54
+$Dist::Zilla::Plugin::Run::VERSION = '0.027';
 # ABSTRACT: Run external commands and code at specific phases of Dist::Zilla
 
 #pod =head1 SYNOPSIS
@@ -104,6 +104,7 @@ $Dist::Zilla::Plugin::Run::VERSION = '0.026';
 #pod * C<%n> the dist name
 #pod * C<%p> path separator ('/' on Unix, '\\' on Win32... useful for cross-platform dist.ini files)
 #pod * C<%v> the dist version
+#pod * C<%t> C<-TRIAL> if the release is a trial release, otherwise the empty string
 #pod * C<%x> full path to the current perl interpreter (like $^X but from L<Config>)
 #pod
 #pod Additionally C<%s> is retained for backward compatibility.
@@ -127,7 +128,7 @@ Dist::Zilla::Plugin::Run - Run external commands and code at specific phases of 
 
 =head1 VERSION
 
-version 0.026
+version 0.027
 
 =head1 SYNOPSIS
 
@@ -245,6 +246,10 @@ C<%v> the dist version
 
 =item *
 
+C<%t> C<-TRIAL> if the release is a trial release, otherwise the empty string
+
+=item *
+
 C<%x> full path to the current perl interpreter (like $^X but from L<Config>)
 
 =back
@@ -267,7 +272,7 @@ the same terms as the Perl 5 programming language system itself.
 
 =head1 CONTRIBUTORS
 
-=for stopwords Randy Stauner Karen Etheridge Torsten Raudssus Nickolay Platonov Olivier Mengué Al Newkirk Tatsuhiko Miyagawa
+=for stopwords Randy Stauner Karen Etheridge Torsten Raudssus Nickolay Platonov Olivier Mengué Al Newkirk Tatsuhiko Miyagawa Thomas Sibley
 
 =over 4
 
@@ -298,6 +303,14 @@ Al Newkirk <github@alnewkirk.com>
 =item *
 
 Tatsuhiko Miyagawa <miyagawa@cpan.org>
+
+=item *
+
+Thomas Sibley <tsibley@cpan.org>
+
+=item *
+
+Karen Etheridge <github@froods.org>
 
 =back
 

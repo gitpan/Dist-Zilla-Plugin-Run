@@ -3,7 +3,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::Run::Release;
 # ABSTRACT: execute a command of the distribution on release
-$Dist::Zilla::Plugin::Run::Release::VERSION = '0.026';
+$Dist::Zilla::Plugin::Run::Release::VERSION = '0.027';
 use Moose;
 with qw(
     Dist::Zilla::Role::Releaser
@@ -62,7 +62,7 @@ Dist::Zilla::Plugin::Run::Release - execute a command of the distribution on rel
 
 =head1 VERSION
 
-version 0.026
+version 0.027
 
 =head1 SYNOPSIS
 

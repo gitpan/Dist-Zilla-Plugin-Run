@@ -3,7 +3,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::Run::Role::Runner;
 # ABSTRACT: Role for the packages of Dist::Zilla::Plugin::Run
-$Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.026';
+$Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.027';
 use Moose::Role;
 use namespace::autoclean;
 use File::Spec (); # core
@@ -221,6 +221,7 @@ sub build_formatter {
     # available during build, not mint
     unless( $params->{minting} ){
         $codes->{v} = sub { $self->zilla->version };
+        $codes->{t} = sub { $self->zilla->is_trial ? '-TRIAL' : '' };
     }
 
     # positional replace (backward compatible)
@@ -267,7 +268,7 @@ Dist::Zilla::Plugin::Run::Role::Runner - Role for the packages of Dist::Zilla::P
 
 =head1 VERSION
 
-version 0.026
+version 0.027
 
 =head1 DESCRIPTION
 
