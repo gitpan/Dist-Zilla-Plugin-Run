@@ -2,8 +2,8 @@ use strict;
 use warnings;
 
 package Dist::Zilla::Plugin::Run;
-# git description: 0.026-4-g10a8f54
-$Dist::Zilla::Plugin::Run::VERSION = '0.027';
+# git description: 0.027-11-gfbceb91
+$Dist::Zilla::Plugin::Run::VERSION = '0.028';
 # ABSTRACT: Run external commands and code at specific phases of Dist::Zilla
 
 #pod =head1 SYNOPSIS
@@ -17,7 +17,7 @@ $Dist::Zilla::Plugin::Run::VERSION = '0.027';
 #pod   run = script/do_this.pl --version %s
 #pod   run = script/do_that.pl
 #pod   eval = if ($ENV{SOMETHING}) {
-#pod   eval =   shift->log('some message')
+#pod   eval =   $_[0]->log('some message')
 #pod   eval = }
 #pod
 #pod   [Run::BeforeRelease]
@@ -46,6 +46,7 @@ $Dist::Zilla::Plugin::Run::VERSION = '0.027';
 #pod   [Run::AfterMint]
 #pod   run = some command %d
 #pod   eval = unlink scratch.dat
+#pod   eval = print "I just minted %n for you. Have a nice day!\n";
 #pod
 #pod =head1 DESCRIPTION
 #pod
@@ -95,7 +96,7 @@ $Dist::Zilla::Plugin::Run::VERSION = '0.027';
 #pod =head1 CONVERSIONS
 #pod
 #pod The following conversions/format specifiers are defined
-#pod for passing as arguments to the specified commands
+#pod for passing as arguments to the specified commands and eval strings
 #pod (though not all values are available at all phases).
 #pod
 #pod =for :list
@@ -128,7 +129,7 @@ Dist::Zilla::Plugin::Run - Run external commands and code at specific phases of 
 
 =head1 VERSION
 
-version 0.027
+version 0.028
 
 =head1 SYNOPSIS
 
@@ -141,7 +142,7 @@ version 0.027
   run = script/do_this.pl --version %s
   run = script/do_that.pl
   eval = if ($ENV{SOMETHING}) {
-  eval =   shift->log('some message')
+  eval =   $_[0]->log('some message')
   eval = }
 
   [Run::BeforeRelease]
@@ -170,6 +171,7 @@ version 0.027
   [Run::AfterMint]
   run = some command %d
   eval = unlink scratch.dat
+  eval = print "I just minted %n for you. Have a nice day!\n";
 
 =head1 DESCRIPTION
 
@@ -219,7 +221,7 @@ Defaults to false.
 =head1 CONVERSIONS
 
 The following conversions/format specifiers are defined
-for passing as arguments to the specified commands
+for passing as arguments to the specified commands and eval strings
 (though not all values are available at all phases).
 
 =over 4
@@ -307,10 +309,6 @@ Tatsuhiko Miyagawa <miyagawa@cpan.org>
 =item *
 
 Thomas Sibley <tsibley@cpan.org>
-
-=item *
-
-Karen Etheridge <github@froods.org>
 
 =back
 

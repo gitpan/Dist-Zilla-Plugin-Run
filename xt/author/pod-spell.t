@@ -43,12 +43,12 @@ Dist
 Zilla
 Plugin
 Run
-Release
-BeforeBuild
 Test
+AfterBuild
+AfterMint
 AfterRelease
 Role
 Runner
-AfterBuild
-AfterMint
+BeforeBuild
 BeforeRelease
+Release

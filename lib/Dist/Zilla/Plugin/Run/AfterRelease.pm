@@ -3,7 +3,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::Run::AfterRelease;
 # ABSTRACT: execute a command of the distribution after release
-$Dist::Zilla::Plugin::Run::AfterRelease::VERSION = '0.027';
+$Dist::Zilla::Plugin::Run::AfterRelease::VERSION = '0.028';
 use Moose;
 with qw(
     Dist::Zilla::Role::AfterRelease
@@ -61,7 +61,7 @@ Dist::Zilla::Plugin::Run::AfterRelease - execute a command of the distribution a
 
 =head1 VERSION
 
-version 0.027
+version 0.028
 
 =head1 SYNOPSIS
 

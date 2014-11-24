@@ -3,7 +3,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::Run::Role::Runner;
 # ABSTRACT: Role for the packages of Dist::Zilla::Plugin::Run
-$Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.027';
+$Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.028';
 use Moose::Role;
 use namespace::autoclean;
 use File::Spec (); # core
@@ -112,13 +112,13 @@ sub call_script {
         if ($is_trial) {
             $self->run_cmd($run_cmd, $params);
         } else {
-            $self->log("Not executing, because no trial: $run_cmd");
+            $self->log_debug([ 'Not executing, because no trial: %s', $run_cmd ]);
         }
     }
 
     foreach my $run_cmd (@{$self->run_no_trial}) {
         if ($is_trial) {
-            $self->log("Not executing, because trial: $run_cmd");
+            $self->log_debug([ 'Not executing, because trial: %s', $run_cmd ]);
         } else {
             $self->run_cmd($run_cmd, $params);
         }
@@ -130,13 +130,13 @@ sub call_script {
         if ($is_release) {
             $self->run_cmd($run_cmd, $params);
         } else {
-            $self->log("Not executing, because no release: $run_cmd");
+            $self->log_debug([ 'Not executing, because no release: %s', $run_cmd ]);
         }
     }
 
     foreach my $run_cmd (@{$self->run_no_release}) {
         if ($is_release) {
-            $self->log("Not executing, because release: $run_cmd");
+            $self->log_debug([ 'Not executing, because release: %s', $run_cmd ]);
         } else {
             $self->run_cmd($run_cmd, $params);
         }
@@ -144,11 +144,8 @@ sub call_script {
 
     if (my @code = @{ $self->eval }) {
         my $code = join "\n", @code;
-        $self->log("evaluating: $code");
 
-        my $sub = sub { eval $code };
-        $sub->($self);
-        $self->log('evaluation died: ' . $@) if $@;
+        $self->eval_cmd($code, $params);
     }
 }
 
@@ -173,8 +170,19 @@ sub run_cmd {
         my $status = ($? >> 8);
 
         $self->log_fatal("Command exited with status $status ($?)") if $status;
-        $self->log("Command executed successfully");
+        $self->log_debug('Command executed successfully');
     }
+}
+
+sub eval_cmd {
+    my ( $self, $code, $params ) = @_;
+
+    $code = $self->build_formatter($params)->format($code);
+    $self->log("evaluating: $code");
+
+    my $sub = sub { eval $code };
+    $sub->($self);
+    $self->log_fatal('evaluation died: ' . $@) if $@;
 }
 
 around mvp_multivalue_args => sub {
@@ -268,7 +276,7 @@ Dist::Zilla::Plugin::Run::Role::Runner - Role for the packages of Dist::Zilla::P
 
 =head1 VERSION
 
-version 0.027
+version 0.028
 
 =head1 DESCRIPTION
 

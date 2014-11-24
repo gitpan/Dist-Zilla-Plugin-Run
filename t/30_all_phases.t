@@ -27,15 +27,14 @@ use warnings;
 
 use Path::Tiny;
 
-#my $fh = path($ARGV[ 0 ], 'lib', 'AFTER_BUILD.txt')->openw();
-path(__FILE__)->parent->child('phases.txt')->append_raw(join(' ', @ARGV) . "\n");
+path('.')->child('phases.txt')->append_raw(join(' ', @ARGV) . "\n");
 SCRIPT
             },
         },
     );
 
+    $tzil->chrome->logger->set_debug(1);
     $tzil->release;
-    my @txt = split /\n/, $tzil->slurp_file(path(qw(source script phases.txt)));
 
     my %f = (
         a => 'DZT-Sample-0.001.tar.gz',
@@ -46,7 +45,7 @@ SCRIPT
     );
 
     # test constant conversions as well as positional %s for backward compatibility
-    my @exp = split /\n/, <<OUTPUT;
+    my $expected = <<OUTPUT;
 before_build $f{v} $f{n} $f{v} ... $f{x}
 after_build $f{n} $f{v} $f{d} $f{d} $f{v} $f{v} .. $f{x}
 before_release $f{n} -d $f{d} $f{a} -v $f{v} .$f{a}. $f{x}
@@ -54,12 +53,14 @@ release $f{a} $f{n} $f{v} $f{d}/a $f{d}/b $f{a} $f{x}
 after_release $f{d} $f{v} $f{a} $f{v} $f{n} $f{a} $f{x}
 OUTPUT
 
-    # provide better test titles
-    my @phases = map { /^(\w+) / && $1 } @exp;
+    is(
+        path($tzil->tempdir)->child(qw(source phases.txt))->slurp_raw,
+        $expected,
+        'got expected output for all five phases',
+    );
 
-    foreach my $i ( 0 .. $#exp ) {
-      is($txt[$i], $exp[$i], "expected output from $phases[$i] phase");
-    }
+    diag 'got log messages: ', explain $tzil->log_messages
+        if not Test::Builder->new->is_passing;
 }
 
 done_testing;

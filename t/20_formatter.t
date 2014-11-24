@@ -26,10 +26,7 @@ for my $trial (0, 1) {
 use strict;
 use warnings;
 
-use Path::Tiny;
-
-#my $fh = path($ARGV[ 0 ], 'lib', 'AFTER_BUILD.txt')->openw();
-path(__FILE__)->parent->child('phases.txt')->append_raw(join(' ', @ARGV) . "\n");
+# I do nothing!
 SCRIPT
             },
         },
@@ -56,6 +53,9 @@ SCRIPT
         'correct formatting';
 
     is $formatter->format('%v%t%s%n'), "$f{v}$f{t}$f{n}", 'ran out of %s (but not the constants)';
+
+    $tzil->chrome->logger->set_debug(1);
+    $tzil->release;
 
     cmp_deeply(
         $tzil->distmeta,
@@ -117,6 +117,9 @@ SCRIPT
         }),
         'dumped configs are good',
     ) or diag 'got distmeta: ', explain $tzil->distmeta;
+
+    diag 'got log messages: ', explain $tzil->log_messages
+        if not Test::Builder->new->is_passing;
 }
 
 done_testing;
