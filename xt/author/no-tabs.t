@@ -26,6 +26,7 @@ my @files = (
     't/50_mint.t',
     't/60_redacted_configs.t',
     't/70-eval.t',
+    't/80-fatal-errors.t',
     'xt/author/00-compile.t',
     'xt/author/clean-namespaces.t',
     'xt/author/eol.t',

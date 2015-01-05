@@ -3,17 +3,17 @@ use warnings;
 
 package Dist::Zilla::Plugin::Run::BeforeBuild;
 # ABSTRACT: execute a command of the distribution before build
-$Dist::Zilla::Plugin::Run::BeforeBuild::VERSION = '0.028';
+$Dist::Zilla::Plugin::Run::BeforeBuild::VERSION = '0.029';
 use Moose;
 with qw(
-    Dist::Zilla::Role::BeforeBuild
-    Dist::Zilla::Plugin::Run::Role::Runner
+  Dist::Zilla::Role::BeforeBuild
+  Dist::Zilla::Plugin::Run::Role::Runner
 );
 
 use namespace::autoclean;
 
 sub before_build {
-    my ($self) = @_;
+  my ($self) = @_;
   $self->call_script({
     pos => [sub { $self->zilla->version }]
   });
@@ -24,7 +24,6 @@ sub before_build {
 #pod   [Run::BeforeBuild]
 #pod   run = script/do_this.pl --version %s
 #pod   run = script/do_that.pl
-#pod
 #pod
 #pod =head1 DESCRIPTION
 #pod
@@ -56,7 +55,7 @@ Dist::Zilla::Plugin::Run::BeforeBuild - execute a command of the distribution be
 
 =head1 VERSION
 
-version 0.028
+version 0.029
 
 =head1 SYNOPSIS
 

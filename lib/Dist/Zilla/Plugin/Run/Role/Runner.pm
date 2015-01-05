@@ -3,7 +3,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::Run::Role::Runner;
 # ABSTRACT: Role for the packages of Dist::Zilla::Plugin::Run
-$Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.028';
+$Dist::Zilla::Plugin::Run::Role::Runner::VERSION = '0.029';
 use Moose::Role;
 use namespace::autoclean;
 use File::Spec (); # core
@@ -69,6 +69,12 @@ has eval => (
     default => sub { [] },
 );
 
+has fatal_errors => (
+    is => 'ro',
+    isa => 'Bool',
+    default => 1,
+);
+
 around dump_config => sub
 {
     my ($orig, $self) = @_;
@@ -112,13 +118,13 @@ sub call_script {
         if ($is_trial) {
             $self->run_cmd($run_cmd, $params);
         } else {
-            $self->log_debug([ 'Not executing, because no trial: %s', $run_cmd ]);
+            $self->log_debug([ 'not executing, because no trial: %s', $run_cmd ]);
         }
     }
 
     foreach my $run_cmd (@{$self->run_no_trial}) {
         if ($is_trial) {
-            $self->log_debug([ 'Not executing, because trial: %s', $run_cmd ]);
+            $self->log_debug([ 'not executing, because trial: %s', $run_cmd ]);
         } else {
             $self->run_cmd($run_cmd, $params);
         }
@@ -130,13 +136,13 @@ sub call_script {
         if ($is_release) {
             $self->run_cmd($run_cmd, $params);
         } else {
-            $self->log_debug([ 'Not executing, because no release: %s', $run_cmd ]);
+            $self->log_debug([ 'not executing, because no release: %s', $run_cmd ]);
         }
     }
 
     foreach my $run_cmd (@{$self->run_no_release}) {
         if ($is_release) {
-            $self->log_debug([ 'Not executing, because release: %s', $run_cmd ]);
+            $self->log_debug([ 'not executing, because release: %s', $run_cmd ]);
         } else {
             $self->run_cmd($run_cmd, $params);
         }
@@ -155,7 +161,7 @@ sub run_cmd {
         require IPC::Open3;  # core
 
         my $command = $self->build_formatter($params)->format($run_cmd);
-        $self->log("Executing: $command");
+        $self->log("executing: $command");
 
         # autoflush STDOUT so we can see command output right away
         local $| = 1;
@@ -167,10 +173,14 @@ sub run_cmd {
         }
         # zombie repellent
         waitpid($pid, 0);
-        my $status = ($? >> 8);
 
-        $self->log_fatal("Command exited with status $status ($?)") if $status;
-        $self->log_debug('Command executed successfully');
+        if (my $status = ($? >> 8)) {
+            my $method = $self->fatal_errors ? 'log_fatal' : 'log';
+            $self->$method("command exited with status $status ($?)");
+        }
+        else {
+            $self->log_debug('command executed successfully');
+        }
     }
 }
 
@@ -182,7 +192,11 @@ sub eval_cmd {
 
     my $sub = sub { eval $code };
     $sub->($self);
-    $self->log_fatal('evaluation died: ' . $@) if $@;
+
+    if ($@) {
+        my $method = $self->fatal_errors ? 'log_fatal' : 'log';
+        $self->$method('evaluation died: ' . $@);
+    }
 }
 
 around mvp_multivalue_args => sub {
@@ -276,7 +290,7 @@ Dist::Zilla::Plugin::Run::Role::Runner - Role for the packages of Dist::Zilla::P
 
 =head1 VERSION
 
-version 0.028
+version 0.029
 
 =head1 DESCRIPTION
 

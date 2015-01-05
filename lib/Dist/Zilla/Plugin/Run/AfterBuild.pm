@@ -3,17 +3,17 @@ use warnings;
 
 package Dist::Zilla::Plugin::Run::AfterBuild;
 # ABSTRACT: execute a command of the distribution after build
-$Dist::Zilla::Plugin::Run::AfterBuild::VERSION = '0.028';
+$Dist::Zilla::Plugin::Run::AfterBuild::VERSION = '0.029';
 use Moose;
 with qw(
-    Dist::Zilla::Role::AfterBuild
-    Dist::Zilla::Plugin::Run::Role::Runner
+  Dist::Zilla::Role::AfterBuild
+  Dist::Zilla::Plugin::Run::Role::Runner
 );
 
 use namespace::autoclean;
 
 sub after_build {
-    my ($self, $param) = @_;
+  my ($self, $param) = @_;
   $self->call_script({
     dir =>  $param->{ build_root },
     pos => [$param->{ build_root }, sub { $self->zilla->version }]
@@ -25,7 +25,6 @@ sub after_build {
 #pod   [Run::AfterBuild]
 #pod   run = script/do_this.pl --dir %s --version %s
 #pod   run = script/do_that.pl
-#pod
 #pod
 #pod =head1 DESCRIPTION
 #pod
@@ -58,7 +57,7 @@ Dist::Zilla::Plugin::Run::AfterBuild - execute a command of the distribution aft
 
 =head1 VERSION
 
-version 0.028
+version 0.029
 
 =head1 SYNOPSIS
 

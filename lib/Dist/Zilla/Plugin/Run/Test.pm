@@ -3,7 +3,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::Run::Test;
 # ABSTRACT: execute a command of the distribution after build
-$Dist::Zilla::Plugin::Run::Test::VERSION = '0.028';
+$Dist::Zilla::Plugin::Run::Test::VERSION = '0.029';
 use Moose;
 with qw(
     Dist::Zilla::Role::TestRunner
@@ -24,7 +24,6 @@ sub test {
 #pod
 #pod   [Run::Test]
 #pod   run = script/tester.pl --name %n --version %v some_file.ext
-#pod
 #pod
 #pod =head1 DESCRIPTION
 #pod
@@ -59,7 +58,7 @@ Dist::Zilla::Plugin::Run::Test - execute a command of the distribution after bui
 
 =head1 VERSION
 
-version 0.028
+version 0.029
 
 =head1 SYNOPSIS
 

@@ -1,11 +1,9 @@
 use strict;
 use warnings;
 
-package Dist::Zilla::Plugin::Run;
-# git description: 0.027-11-gfbceb91
-$Dist::Zilla::Plugin::Run::VERSION = '0.028';
+package Dist::Zilla::Plugin::Run; # git description: 0.028-8-g7d743dd
 # ABSTRACT: Run external commands and code at specific phases of Dist::Zilla
-
+$Dist::Zilla::Plugin::Run::VERSION = '0.029';
 #pod =head1 SYNOPSIS
 #pod
 #pod   [Run::AfterBuild]
@@ -14,8 +12,9 @@ $Dist::Zilla::Plugin::Run::VERSION = '0.028';
 #pod   eval = unlink scratch.dat
 #pod
 #pod   [Run::BeforeBuild]
+#pod   fatal_errors = 0
 #pod   run = script/do_this.pl --version %s
-#pod   run = script/do_that.pl
+#pod   run = script/do_that_crashy_thing.pl
 #pod   eval = if ($ENV{SOMETHING}) {
 #pod   eval =   $_[0]->log('some message')
 #pod   eval = }
@@ -93,6 +92,11 @@ $Dist::Zilla::Plugin::Run::VERSION = '0.028';
 #pod
 #pod Defaults to false.
 #pod
+#pod =head2 fatal_errors
+#pod
+#pod When true, if the C<run> command returns a non-zero exit status or the C<eval>
+#pod command dies, the build will fail. Defaults to true.
+#pod
 #pod =head1 CONVERSIONS
 #pod
 #pod The following conversions/format specifiers are defined
@@ -129,7 +133,7 @@ Dist::Zilla::Plugin::Run - Run external commands and code at specific phases of 
 
 =head1 VERSION
 
-version 0.028
+version 0.029
 
 =head1 SYNOPSIS
 
@@ -139,8 +143,9 @@ version 0.028
   eval = unlink scratch.dat
 
   [Run::BeforeBuild]
+  fatal_errors = 0
   run = script/do_this.pl --version %s
-  run = script/do_that.pl
+  run = script/do_that_crashy_thing.pl
   eval = if ($ENV{SOMETHING}) {
   eval =   $_[0]->log('some message')
   eval = }
@@ -218,6 +223,11 @@ automatically when a URL with embedded password is present.
 
 Defaults to false.
 
+=head2 fatal_errors
+
+When true, if the C<run> command returns a non-zero exit status or the C<eval>
+command dies, the build will fail. Defaults to true.
+
 =head1 CONVERSIONS
 
 The following conversions/format specifiers are defined
@@ -274,17 +284,17 @@ the same terms as the Perl 5 programming language system itself.
 
 =head1 CONTRIBUTORS
 
-=for stopwords Randy Stauner Karen Etheridge Torsten Raudssus Nickolay Platonov Olivier Mengué Al Newkirk Tatsuhiko Miyagawa Thomas Sibley
+=for stopwords Karen Etheridge Randy Stauner Torsten Raudssus Nickolay Platonov Olivier Mengué Al Newkirk Tatsuhiko Miyagawa Thomas Sibley
 
 =over 4
 
 =item *
 
-Randy Stauner <rwstauner@cpan.org>
+Karen Etheridge <ether@cpan.org>
 
 =item *
 
-Karen Etheridge <ether@cpan.org>
+Randy Stauner <rwstauner@cpan.org>
 
 =item *
 

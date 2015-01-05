@@ -3,11 +3,11 @@ use warnings;
 
 package Dist::Zilla::Plugin::Run::BeforeRelease;
 # ABSTRACT: execute a command of the distribution before release
-$Dist::Zilla::Plugin::Run::BeforeRelease::VERSION = '0.028';
+$Dist::Zilla::Plugin::Run::BeforeRelease::VERSION = '0.029';
 use Moose;
 with qw(
-    Dist::Zilla::Role::BeforeRelease
-    Dist::Zilla::Plugin::Run::Role::Runner
+  Dist::Zilla::Role::BeforeRelease
+  Dist::Zilla::Plugin::Run::Role::Runner
 );
 
 use namespace::autoclean;
@@ -60,7 +60,7 @@ Dist::Zilla::Plugin::Run::BeforeRelease - execute a command of the distribution 
 
 =head1 VERSION
 
-version 0.028
+version 0.029
 
 =head1 SYNOPSIS
 
